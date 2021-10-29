@@ -24,8 +24,8 @@ namespace BasicFacebookFeatures
             Clipboard.SetText("design.patterns20cc"); /// the current password for Desig Patter
 
             FacebookWrapper.LoginResult loginResult = FacebookService.Login(
-                    /// (This is Desig Patter's App ID. replace it with your own)
-                    "1450160541956417", 
+                    /// (This is Desig Patter's App ID. replace it with your own) - Replaced
+                    "169144092019421", 
                     /// requested permissions:
 					"email",
                     "public_profile"
@@ -40,5 +40,20 @@ namespace BasicFacebookFeatures
 			FacebookService.LogoutWithUI();
 			buttonLogin.Text = "Login";
 		}
-	}
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
