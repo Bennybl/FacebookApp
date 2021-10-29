@@ -208,6 +208,7 @@
             this.listBoxGroups.Name = "listBoxGroups";
             this.listBoxGroups.Size = new System.Drawing.Size(210, 148);
             this.listBoxGroups.TabIndex = 70;
+            this.listBoxGroups.SelectedIndexChanged += new System.EventHandler(this.listBoxGroups_SelectedIndexChanged);
             // 
             // buttonFetchGroups
             // 
@@ -217,6 +218,7 @@
             this.buttonFetchGroups.TabIndex = 69;
             this.buttonFetchGroups.Text = "Fetch Groups";
             this.buttonFetchGroups.UseVisualStyleBackColor = true;
+            this.buttonFetchGroups.Click += new System.EventHandler(this.buttonFetchGroups_Click);
             // 
             // pictureBoxPages
             // 
@@ -225,6 +227,7 @@
             this.pictureBoxPages.Size = new System.Drawing.Size(100, 69);
             this.pictureBoxPages.TabIndex = 68;
             this.pictureBoxPages.TabStop = false;
+            this.pictureBoxPages.Click += new System.EventHandler(this.pictureBoxPages_Click);
             // 
             // listBoxPages
             // 
@@ -234,6 +237,7 @@
             this.listBoxPages.Name = "listBoxPages";
             this.listBoxPages.Size = new System.Drawing.Size(207, 148);
             this.listBoxPages.TabIndex = 67;
+            this.listBoxPages.SelectedIndexChanged += new System.EventHandler(this.listBoxPages_SelectedIndexChanged);
             // 
             // buttonPages
             // 
@@ -243,6 +247,7 @@
             this.buttonPages.TabIndex = 66;
             this.buttonPages.Text = "Fetch Liked Pages";
             this.buttonPages.UseVisualStyleBackColor = true;
+            this.buttonPages.Click += new System.EventHandler(this.buttonPages_Click);
             // 
             // FormMain
             // 
