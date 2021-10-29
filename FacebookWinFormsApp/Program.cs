@@ -8,6 +8,7 @@ namespace BasicFacebookFeatures
 {
     static class Program
     {
+        ///github test
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
