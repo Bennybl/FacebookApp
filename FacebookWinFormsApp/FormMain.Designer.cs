@@ -30,11 +30,8 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabHomePage = new System.Windows.Forms.TabPage();
-            this.pictureBoxAlbums = new System.Windows.Forms.PictureBox();
             this.listBoxAlbums = new System.Windows.Forms.ListBox();
             this.buttonFetchAlbums = new System.Windows.Forms.Button();
-            this.pictureBoxEvents = new System.Windows.Forms.PictureBox();
-            this.pictureBoxGroups = new System.Windows.Forms.PictureBox();
             this.listBoxGroups = new System.Windows.Forms.ListBox();
             this.buttonFetchGroups = new System.Windows.Forms.Button();
             this.pictureBoxPages = new System.Windows.Forms.PictureBox();
@@ -42,7 +39,6 @@
             this.buttonFetchPages = new System.Windows.Forms.Button();
             this.listBoxEvents = new System.Windows.Forms.ListBox();
             this.buttonFetchEvents = new System.Windows.Forms.Button();
-            this.pictureBoxFriendsProfile = new System.Windows.Forms.PictureBox();
             this.listBoxFriends = new System.Windows.Forms.ListBox();
             this.buttonFetchFriends = new System.Windows.Forms.Button();
             this.buttonPostStatus = new System.Windows.Forms.Button();
@@ -61,15 +57,20 @@
             this.tabFeature2 = new System.Windows.Forms.TabPage();
             this.buttonAboutMe = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
+            this.textBoxCategory = new System.Windows.Forms.TextBox();
+            this.pictureBoxEvents = new System.Windows.Forms.PictureBox();
+            this.pictureBoxGroups = new System.Windows.Forms.PictureBox();
+            this.pictureBoxAlbums = new System.Windows.Forms.PictureBox();
+            this.pictureBoxFriends = new System.Windows.Forms.PictureBox();
             this.tabControl.SuspendLayout();
             this.tabHomePage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbums)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvents)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPages)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriendsProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.tabNewsFeed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbums)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriends)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -88,13 +89,15 @@
             // tabHomePage
             // 
             this.tabHomePage.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabHomePage.Controls.Add(this.pictureBoxFriends);
+            this.tabHomePage.Controls.Add(this.pictureBoxAlbums);
+            this.tabHomePage.Controls.Add(this.pictureBoxGroups);
+            this.tabHomePage.Controls.Add(this.pictureBoxEvents);
+            this.tabHomePage.Controls.Add(this.textBoxCategory);
             this.tabHomePage.Controls.Add(this.buttonSettings);
             this.tabHomePage.Controls.Add(this.buttonAboutMe);
-            this.tabHomePage.Controls.Add(this.pictureBoxAlbums);
             this.tabHomePage.Controls.Add(this.listBoxAlbums);
             this.tabHomePage.Controls.Add(this.buttonFetchAlbums);
-            this.tabHomePage.Controls.Add(this.pictureBoxEvents);
-            this.tabHomePage.Controls.Add(this.pictureBoxGroups);
             this.tabHomePage.Controls.Add(this.listBoxGroups);
             this.tabHomePage.Controls.Add(this.buttonFetchGroups);
             this.tabHomePage.Controls.Add(this.pictureBoxPages);
@@ -102,7 +105,6 @@
             this.tabHomePage.Controls.Add(this.buttonFetchPages);
             this.tabHomePage.Controls.Add(this.listBoxEvents);
             this.tabHomePage.Controls.Add(this.buttonFetchEvents);
-            this.tabHomePage.Controls.Add(this.pictureBoxFriendsProfile);
             this.tabHomePage.Controls.Add(this.listBoxFriends);
             this.tabHomePage.Controls.Add(this.buttonFetchFriends);
             this.tabHomePage.Controls.Add(this.buttonPostStatus);
@@ -121,16 +123,6 @@
             this.tabHomePage.TabIndex = 0;
             this.tabHomePage.Text = "Home Page";
             this.tabHomePage.Click += new System.EventHandler(this.tabPage1_Click);
-            // 
-            // pictureBoxAlbums
-            // 
-            this.pictureBoxAlbums.BackColor = System.Drawing.Color.Gainsboro;
-            this.pictureBoxAlbums.Location = new System.Drawing.Point(124, 487);
-            this.pictureBoxAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxAlbums.Name = "pictureBoxAlbums";
-            this.pictureBoxAlbums.Size = new System.Drawing.Size(99, 84);
-            this.pictureBoxAlbums.TabIndex = 96;
-            this.pictureBoxAlbums.TabStop = false;
             // 
             // listBoxAlbums
             // 
@@ -154,25 +146,6 @@
             this.buttonFetchAlbums.Text = "Fetch Albums";
             this.buttonFetchAlbums.UseVisualStyleBackColor = true;
             this.buttonFetchAlbums.Click += new System.EventHandler(this.buttonFetchAlbums_Click);
-            // 
-            // pictureBoxEvents
-            // 
-            this.pictureBoxEvents.BackColor = System.Drawing.Color.Gainsboro;
-            this.pictureBoxEvents.Location = new System.Drawing.Point(342, 287);
-            this.pictureBoxEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxEvents.Name = "pictureBoxEvents";
-            this.pictureBoxEvents.Size = new System.Drawing.Size(99, 84);
-            this.pictureBoxEvents.TabIndex = 93;
-            this.pictureBoxEvents.TabStop = false;
-            // 
-            // pictureBoxGroups
-            // 
-            this.pictureBoxGroups.Location = new System.Drawing.Point(557, 287);
-            this.pictureBoxGroups.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxGroups.Name = "pictureBoxGroups";
-            this.pictureBoxGroups.Size = new System.Drawing.Size(100, 84);
-            this.pictureBoxGroups.TabIndex = 92;
-            this.pictureBoxGroups.TabStop = false;
             // 
             // listBoxGroups
             // 
@@ -199,10 +172,10 @@
             // 
             // pictureBoxPages
             // 
-            this.pictureBoxPages.Location = new System.Drawing.Point(771, 287);
+            this.pictureBoxPages.Location = new System.Drawing.Point(796, 304);
             this.pictureBoxPages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBoxPages.Name = "pictureBoxPages";
-            this.pictureBoxPages.Size = new System.Drawing.Size(100, 84);
+            this.pictureBoxPages.Size = new System.Drawing.Size(75, 67);
             this.pictureBoxPages.TabIndex = 89;
             this.pictureBoxPages.TabStop = false;
             // 
@@ -251,16 +224,6 @@
             this.buttonFetchEvents.Text = "Fetch Events";
             this.buttonFetchEvents.UseVisualStyleBackColor = true;
             this.buttonFetchEvents.Click += new System.EventHandler(this.buttonFetchEvents_Click);
-            // 
-            // pictureBoxFriendsProfile
-            // 
-            this.pictureBoxFriendsProfile.BackColor = System.Drawing.Color.Gainsboro;
-            this.pictureBoxFriendsProfile.Location = new System.Drawing.Point(126, 287);
-            this.pictureBoxFriendsProfile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxFriendsProfile.Name = "pictureBoxFriendsProfile";
-            this.pictureBoxFriendsProfile.Size = new System.Drawing.Size(99, 84);
-            this.pictureBoxFriendsProfile.TabIndex = 76;
-            this.pictureBoxFriendsProfile.TabStop = false;
             // 
             // listBoxFriends
             // 
@@ -457,6 +420,50 @@
             this.buttonSettings.UseVisualStyleBackColor = true;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
+            // textBoxCategory
+            // 
+            this.textBoxCategory.Location = new System.Drawing.Point(664, 376);
+            this.textBoxCategory.Name = "textBoxCategory";
+            this.textBoxCategory.Size = new System.Drawing.Size(207, 22);
+            this.textBoxCategory.TabIndex = 99;
+            // 
+            // pictureBoxEvents
+            // 
+            this.pictureBoxEvents.Location = new System.Drawing.Point(366, 304);
+            this.pictureBoxEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBoxEvents.Name = "pictureBoxEvents";
+            this.pictureBoxEvents.Size = new System.Drawing.Size(75, 67);
+            this.pictureBoxEvents.TabIndex = 100;
+            this.pictureBoxEvents.TabStop = false;
+            // 
+            // pictureBoxGroups
+            // 
+            this.pictureBoxGroups.Location = new System.Drawing.Point(582, 304);
+            this.pictureBoxGroups.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBoxGroups.Name = "pictureBoxGroups";
+            this.pictureBoxGroups.Size = new System.Drawing.Size(75, 67);
+            this.pictureBoxGroups.TabIndex = 101;
+            this.pictureBoxGroups.TabStop = false;
+            // 
+            // pictureBoxAlbums
+            // 
+            this.pictureBoxAlbums.Location = new System.Drawing.Point(147, 504);
+            this.pictureBoxAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBoxAlbums.Name = "pictureBoxAlbums";
+            this.pictureBoxAlbums.Size = new System.Drawing.Size(75, 67);
+            this.pictureBoxAlbums.TabIndex = 102;
+            this.pictureBoxAlbums.TabStop = false;
+            this.pictureBoxAlbums.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // pictureBoxFriends
+            // 
+            this.pictureBoxFriends.Location = new System.Drawing.Point(151, 304);
+            this.pictureBoxFriends.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBoxFriends.Name = "pictureBoxFriends";
+            this.pictureBoxFriends.Size = new System.Drawing.Size(75, 67);
+            this.pictureBoxFriends.TabIndex = 103;
+            this.pictureBoxFriends.TabStop = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -471,14 +478,14 @@
             this.tabControl.ResumeLayout(false);
             this.tabHomePage.ResumeLayout(false);
             this.tabHomePage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbums)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvents)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPages)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriendsProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.tabNewsFeed.ResumeLayout(false);
             this.tabNewsFeed.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbums)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriends)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -487,8 +494,6 @@
 
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabHomePage;
-        private System.Windows.Forms.PictureBox pictureBoxEvents;
-        private System.Windows.Forms.PictureBox pictureBoxGroups;
         private System.Windows.Forms.ListBox listBoxGroups;
         private System.Windows.Forms.Button buttonFetchGroups;
         private System.Windows.Forms.PictureBox pictureBoxPages;
@@ -496,7 +501,6 @@
         private System.Windows.Forms.Button buttonFetchPages;
         private System.Windows.Forms.ListBox listBoxEvents;
         private System.Windows.Forms.Button buttonFetchEvents;
-        private System.Windows.Forms.PictureBox pictureBoxFriendsProfile;
         private System.Windows.Forms.ListBox listBoxFriends;
         private System.Windows.Forms.Button buttonFetchFriends;
         private System.Windows.Forms.Button buttonPostStatus;
@@ -513,11 +517,15 @@
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.Label labelNewsFeed;
         private System.Windows.Forms.TabPage tabFeature2;
-        private System.Windows.Forms.PictureBox pictureBoxAlbums;
         private System.Windows.Forms.ListBox listBoxAlbums;
         private System.Windows.Forms.Button buttonFetchAlbums;
         private System.Windows.Forms.Button buttonAboutMe;
         private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.TextBox textBoxCategory;
+        private System.Windows.Forms.PictureBox pictureBoxFriends;
+        private System.Windows.Forms.PictureBox pictureBoxAlbums;
+        private System.Windows.Forms.PictureBox pictureBoxGroups;
+        private System.Windows.Forms.PictureBox pictureBoxEvents;
     }
 }
 

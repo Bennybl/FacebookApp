@@ -169,7 +169,7 @@ namespace BasicFacebookFeatures
             if (listBoxFriends.SelectedItems.Count == 1)
             {
                 User selectedFriend = listBoxFriends.SelectedItem as User;
-                pictureBoxFriendsProfile.LoadAsync(selectedFriend.PictureSmallURL);
+                pictureBoxFriends.LoadAsync(selectedFriend.PictureSmallURL);
             }
         }
               
@@ -392,6 +392,8 @@ namespace BasicFacebookFeatures
             {
                 Page selectedPage = listBoxPages.SelectedItem as Page;
                 pictureBoxPages.LoadAsync(selectedPage.PictureSmallURL);
+                textBoxCategory.Text = selectedPage.Category;
+                MessageBox.Show(selectedPage.Category);
             }
         }
 
@@ -444,6 +446,11 @@ namespace BasicFacebookFeatures
                 m_FormAppSettings = new FormAppSettings();
             }
             m_FormAppSettings.ShowDialog();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

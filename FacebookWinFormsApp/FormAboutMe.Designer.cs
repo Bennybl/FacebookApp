@@ -61,6 +61,7 @@ namespace BasicFacebookFeatures
             this.pictureBoxUser.Size = new System.Drawing.Size(187, 146);
             this.pictureBoxUser.TabIndex = 1;
             this.pictureBoxUser.TabStop = false;
+            this.pictureBoxUser.Click += new System.EventHandler(this.pictureBoxUser_Click);
             // 
             // labelBirthday
             // 
