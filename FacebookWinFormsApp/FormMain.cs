@@ -20,6 +20,7 @@ namespace BasicFacebookFeatures
         }
         User m_LoggedInUser;
         LoginResult m_LoginResult;
+        
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -53,6 +54,7 @@ namespace BasicFacebookFeatures
                 m_LoggedInUser = m_LoginResult.LoggedInUser;
 
                 fetchUserInfo();
+                changeButtonsStatus();
             }
             else
             {
@@ -64,6 +66,8 @@ namespace BasicFacebookFeatures
         {
 			FacebookService.LogoutWithUI();
 			buttonLogin.Text = "Login";
+            pictureBoxProfile.Image = null;
+            changeButtonsStatus();
 		}
 
         private void fetchUserInfo()
@@ -71,10 +75,21 @@ namespace BasicFacebookFeatures
             pictureBoxProfile.LoadAsync(m_LoggedInUser.PictureNormalURL);
             if (m_LoggedInUser.Posts.Count > 0)
             {
-                textBoxPostStatus.Text = m_LoggedInUser.Posts[0].Message;
+                //textBoxPostStatus.Text = m_LoggedInUser.Posts[0].Message;
             }
         }
-        private void buttonEvents_LinkClicked(object sender, EventArgs e)
+
+        private void changeButtonsStatus()
+        {
+            buttonFetchEvents.Enabled = !buttonFetchEvents.Enabled;
+            buttonFetchFriends.Enabled = !buttonFetchFriends.Enabled;
+            buttonFetchPages.Enabled = !buttonFetchPages.Enabled;
+            buttonFetchGroups.Enabled = !buttonFetchGroups.Enabled;
+            buttonFetchPosts.Enabled = !buttonFetchPosts.Enabled;
+            buttonPostStatus.Enabled = !buttonPostStatus.Enabled;
+        }
+
+        private void buttonFetchEvents_Click(object sender, EventArgs e)
         {
             fetchEvents();
         }
@@ -103,7 +118,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void linkFriends_LinkClicked(object sender, EventArgs e)
+        private void buttonFetchFriends_Click(object sender, EventArgs e)
         {
             fetchFriends();
         }
@@ -137,6 +152,26 @@ namespace BasicFacebookFeatures
             {
                 User selectedFriend = listBoxFetchFriends.SelectedItem as User;
                 pictureBoxFriendsProfile.LoadAsync(selectedFriend.PictureNormalURL);
+            }
+        }
+
+        private void refreshNewsFeed()
+        {
+            int counter = 0;
+            listBoxNewsFeed.Items.Clear();
+            foreach(Post post in m_LoggedInUser.NewsFeed)
+            {
+                listBoxNewsFeed.Items.Add(post);
+                counter++;
+                if(counter == 200)
+                {
+                    break;
+                }
+            }
+
+            if(listBoxNewsFeed.Text.Equals("Load"))
+            {
+                listBoxNewsFeed.Text = "Refresh";
             }
         }
 
@@ -178,6 +213,54 @@ namespace BasicFacebookFeatures
         }
 
         private void pictureBoxEvents_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonPostStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonFetchPosts_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void buttonFetchPages_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBoxProfile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonFetchGroups_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            refreshNewsFeed();
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
