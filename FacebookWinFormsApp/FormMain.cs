@@ -9,13 +9,14 @@ using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
+using TestBed;
 
 namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
         User m_LoggedInUser;
-        LoginResult m_LoginResult;
+        LoginResult m_LoginResult;        
 
         public FormMain()
         {
@@ -103,6 +104,7 @@ namespace BasicFacebookFeatures
             buttonPostStatus.Enabled = !buttonPostStatus.Enabled;
             buttonRefresh.Enabled = !buttonRefresh.Enabled;
             buttonFetchAlbums.Enabled = !buttonFetchAlbums.Enabled;
+            buttonAboutMe.Enabled = !buttonAboutMe.Enabled;
         }
 
         private void buttonFetchEvents_Click(object sender, EventArgs e)
@@ -125,7 +127,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void listBoxFetchEvents_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxEvents.SelectedItems.Count == 1)
             {
@@ -162,12 +164,12 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void listBoxFetchFriends_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxFriends.SelectedItems.Count == 1)
             {
                 User selectedFriend = listBoxFriends.SelectedItem as User;
-                pictureBoxFriendsProfile.LoadAsync(selectedFriend.PictureNormalURL);
+                pictureBoxFriendsProfile.LoadAsync(selectedFriend.PictureSmallURL);
             }
         }
               
@@ -215,7 +217,6 @@ namespace BasicFacebookFeatures
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void buttonPostStatus_Click(object sender, EventArgs e)
@@ -390,7 +391,16 @@ namespace BasicFacebookFeatures
             if(listBoxPages.SelectedItems.Count == 1)
             {
                 Page selectedPage = listBoxPages.SelectedItem as Page;
-                pictureBoxPages.LoadAsync(selectedPage.PictureNormalURL);
+                pictureBoxPages.LoadAsync(selectedPage.PictureSmallURL);
+            }
+        }
+
+        private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBoxGroups.SelectedItems.Count == 1)
+            {
+                Group selectedGroup = listBoxGroups.SelectedItem as Group;
+                pictureBoxGroups.LoadAsync(selectedGroup.PictureSmallURL);
             }
         }
 
@@ -416,5 +426,24 @@ namespace BasicFacebookFeatures
             }
         }
 
+        FormAboutMe m_FormAboutMe = null;
+        private void buttonAboutMe_Click(object sender, EventArgs e)
+        {
+            if (m_FormAboutMe == null)
+            {
+                m_FormAboutMe = new FormAboutMe(m_LoggedInUser);
+            }
+            m_FormAboutMe.ShowDialog();
+        }
+
+        FormAppSettings m_FormAppSettings = null;
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            if(m_FormAppSettings == null)
+            {
+                m_FormAppSettings = new FormAppSettings();
+            }
+            m_FormAppSettings.ShowDialog();
+        }
     }
 }

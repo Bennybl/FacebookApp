@@ -91,6 +91,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAboutMe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAboutMe.Designer.cs">
+      <DependentUpon>FormAboutMe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAppSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAppSettings.Designer.cs">
+      <DependentUpon>FormAppSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +111,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAboutMe.resx">
+      <DependentUpon>FormAboutMe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAppSettings.resx">
+      <DependentUpon>FormAppSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
