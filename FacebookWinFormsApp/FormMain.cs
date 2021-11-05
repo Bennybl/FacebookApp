@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,13 +14,14 @@ namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
+        User m_LoggedInUser;
+        LoginResult m_LoginResult;
+
         public FormMain()
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
         }
-        User m_LoggedInUser;
-        LoginResult m_LoginResult;
         
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -68,7 +70,19 @@ namespace BasicFacebookFeatures
 			buttonLogin.Text = "Login";
             pictureBoxProfile.Image = null;
             changeButtonsStatus();
+            clearBoxes();
 		}
+
+        private void clearBoxes()
+        {
+            listBoxEvents.Items.Clear();
+            listBoxAlbums.Items.Clear();
+            listBoxGroups.Items.Clear();
+            listBoxFriends.Items.Clear();
+            listBoxPages.Items.Clear();
+            listBoxNewsFeed.Items.Clear();
+            listBoxPosts.Items.Clear();
+        }
 
         private void fetchUserInfo()
         {
@@ -87,6 +101,8 @@ namespace BasicFacebookFeatures
             buttonFetchGroups.Enabled = !buttonFetchGroups.Enabled;
             buttonFetchPosts.Enabled = !buttonFetchPosts.Enabled;
             buttonPostStatus.Enabled = !buttonPostStatus.Enabled;
+            buttonRefresh.Enabled = !buttonRefresh.Enabled;
+            buttonFetchAlbums.Enabled = !buttonFetchAlbums.Enabled;
         }
 
         private void buttonFetchEvents_Click(object sender, EventArgs e)
@@ -96,14 +112,14 @@ namespace BasicFacebookFeatures
 
         private void fetchEvents()
         {
-            listBoxFetchEvents.Items.Clear();
-            listBoxFetchEvents.DisplayMember = "Name";
+            listBoxEvents.Items.Clear();
+            listBoxEvents.DisplayMember = "Name";
             foreach (Event fbEvent in m_LoggedInUser.Events)
             {
-                listBoxFetchEvents.Items.Add(fbEvent);
+                listBoxEvents.Items.Add(fbEvent);
             }
 
-            if (listBoxFetchEvents.Items.Count == 0)
+            if (listBoxEvents.Items.Count == 0)
             {
                 MessageBox.Show("No Events to retrieve :(");
             }
@@ -111,9 +127,9 @@ namespace BasicFacebookFeatures
 
         private void listBoxFetchEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxFetchEvents.SelectedItems.Count == 1)
+            if (listBoxEvents.SelectedItems.Count == 1)
             {
-                Event selectedEvent = listBoxFetchEvents.SelectedItem as Event;
+                Event selectedEvent = listBoxEvents.SelectedItem as Event;
                 pictureBoxEvents.LoadAsync(selectedEvent.Cover.SourceURL);
             }
         }
@@ -125,14 +141,14 @@ namespace BasicFacebookFeatures
 
         private void fetchFriends()
         {
-            listBoxPages.Items.Clear();
-            listBoxPages.DisplayMember = "Name";
+            listBoxFriends.Items.Clear();
+            listBoxFriends.DisplayMember = "Name";
 
             try
             {
                 foreach (User friend in m_LoggedInUser.Friends)
                 {
-                    listBoxFetchFriends.Items.Add(friend.Name);
+                    listBoxFriends.Items.Add(friend.Name);
                 }
             }
             catch (Exception ex)
@@ -148,33 +164,13 @@ namespace BasicFacebookFeatures
 
         private void listBoxFetchFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxFetchFriends.SelectedItems.Count == 1)
+            if (listBoxFriends.SelectedItems.Count == 1)
             {
-                User selectedFriend = listBoxFetchFriends.SelectedItem as User;
+                User selectedFriend = listBoxFriends.SelectedItem as User;
                 pictureBoxFriendsProfile.LoadAsync(selectedFriend.PictureNormalURL);
             }
         }
-
-        private void refreshNewsFeed()
-        {
-            int counter = 0;
-            listBoxNewsFeed.Items.Clear();
-            foreach(Post post in m_LoggedInUser.NewsFeed)
-            {
-                listBoxNewsFeed.Items.Add(post);
-                counter++;
-                if(counter == 200)
-                {
-                    break;
-                }
-            }
-
-            if(listBoxNewsFeed.Text.Equals("Load"))
-            {
-                listBoxNewsFeed.Text = "Refresh";
-            }
-        }
-
+              
         private void FormMain_Load(object sender, EventArgs e)
         {
 
@@ -224,15 +220,75 @@ namespace BasicFacebookFeatures
 
         private void buttonPostStatus_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Status postedStatus = m_LoggedInUser.PostStatus(textBoxPostStatus.Text);
+                MessageBox.Show("Status Posted! ID: " + postedStatus.Id);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void buttonFetchPosts_Click(object sender, EventArgs e)
         {
-
+            fetchPosts();
         }
+
+        private void fetchPosts()
+        {
+            listBoxPosts.Items.Clear();
+
+            foreach(Post post in m_LoggedInUser.Posts)
+            {
+                if(post.Message != null)
+                {
+                    listBoxPosts.Items.Add(post.Message);
+                }
+                else if(post.Caption != null)
+                {
+                    listBoxPosts.Items.Add(post.Caption);
+                }
+                else
+                {
+                    listBoxPosts.Items.Add(string.Format("[{0}]", post.Type));
+                }
+            }
+
+            if(listBoxPosts.Items.Count == 0)
+            {
+                MessageBox.Show("No Posts to retrieve :(");
+            }
+        }
+
+
         private void buttonFetchPages_Click(object sender, EventArgs e)
         {
+            fetchPages();
+        }
+
+        private void fetchPages()
+        {
+            listBoxPages.Items.Clear();
+            listBoxPages.DisplayMember = "Name";
+
+            try
+            {
+                foreach(Page page in m_LoggedInUser.LikedPages)
+                {
+                    listBoxPages.Items.Add(page);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if(listBoxPages.Items.Count == 0)
+            {
+                MessageBox.Show("No liked pages to retrieve :(");
+            }
         }
 
         private void pictureBoxProfile_Click(object sender, EventArgs e)
@@ -242,7 +298,30 @@ namespace BasicFacebookFeatures
 
         private void buttonFetchGroups_Click(object sender, EventArgs e)
         {
+            fetchGroups();
+        }
 
+        private void fetchGroups()
+        {
+            listBoxGroups.Items.Clear();
+            listBoxGroups.DisplayMember = "Name";
+
+            try
+            {
+                foreach(Group group in m_LoggedInUser.Groups)
+                {
+                    listBoxGroups.Items.Add(group);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if(listBoxGroups.Items.Count == 0)
+            {
+                MessageBox.Show("No groups to retrieve :(");
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -255,6 +334,26 @@ namespace BasicFacebookFeatures
             refreshNewsFeed();
         }
 
+        private void refreshNewsFeed()
+        {
+            int counter = 0;
+            listBoxNewsFeed.Items.Clear();
+            foreach(Post post in m_LoggedInUser.NewsFeed)
+            {
+                listBoxNewsFeed.Items.Add(post);
+                counter++;
+                if(counter == 200)
+                {
+                    break;
+                }
+            }
+
+            if(listBoxNewsFeed.Text.Equals("Load"))
+            {
+                listBoxNewsFeed.Text = "Refresh";
+            }
+        }
+
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
@@ -264,5 +363,58 @@ namespace BasicFacebookFeatures
         {
 
         }
+
+        private void buttonFetchAlbums_Click(object sender, EventArgs e)
+        {
+            fetchAlbums();
+        }
+
+        private void fetchAlbums()
+        {
+            listBoxAlbums.Items.Clear();
+            listBoxAlbums.DisplayMember = "Name";
+            foreach(Album album in m_LoggedInUser.Albums)
+            {
+                listBoxAlbums.Items.Add(album);
+                //album.ReFetch(DynamicWrapper.eLoadOptions.Full);
+            }
+
+            if(listBoxAlbums.Items.Count == 0)
+            {
+                MessageBox.Show("No Albums to retrieve :(");
+            }
+        }
+
+        private void listBoxPages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBoxPages.SelectedItems.Count == 1)
+            {
+                Page selectedPage = listBoxPages.SelectedItem as Page;
+                pictureBoxPages.LoadAsync(selectedPage.PictureNormalURL);
+            }
+        }
+
+
+        private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displaySelectedAlbum();
+        }
+
+        private void displaySelectedAlbum()
+        {
+            if(listBoxAlbums.SelectedItems.Count == 1)
+            {
+                Album selectedAlbum = listBoxAlbums.SelectedItem as Album;
+                if(selectedAlbum.PictureAlbumURL != null)
+                {
+                    pictureBoxAlbums.LoadAsync(selectedAlbum.PictureAlbumURL);
+                }
+                else
+                {
+                    pictureBoxProfile.Image = pictureBoxProfile.ErrorImage;
+                }
+            }
+        }
+
     }
 }
