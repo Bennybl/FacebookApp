@@ -275,41 +275,38 @@
             // 
             // pictureBoxProfile
             // 
-            this.pictureBoxProfile.Location = new System.Drawing.Point(18, 107);
-            this.pictureBoxProfile.Name = "pictureBoxProfile";
-            this.pictureBoxProfile.Size = new System.Drawing.Size(285, 126);
-            this.pictureBoxProfile.TabIndex = 75;
-            this.pictureBoxProfile.TabStop = false;
+            this.buttonFetchGroups.Location = new System.Drawing.Point(448, 194);
+            this.buttonFetchGroups.Name = "buttonFetchGroups";
+            this.buttonFetchGroups.Size = new System.Drawing.Size(210, 23);
+            this.buttonFetchGroups.TabIndex = 69;
+            this.buttonFetchGroups.Text = "Fetch Groups";
+            this.buttonFetchGroups.UseVisualStyleBackColor = true;
             // 
             // buttonLogout
             // 
-            this.buttonLogout.Location = new System.Drawing.Point(165, 19);
-            this.buttonLogout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonLogout.Name = "buttonLogout";
-            this.buttonLogout.Size = new System.Drawing.Size(138, 35);
-            this.buttonLogout.TabIndex = 74;
-            this.buttonLogout.Text = "Logout";
-            this.buttonLogout.UseVisualStyleBackColor = true;
+            this.pictureBoxPages.Location = new System.Drawing.Point(771, 302);
+            this.pictureBoxPages.Name = "pictureBoxPages";
+            this.pictureBoxPages.Size = new System.Drawing.Size(100, 69);
+            this.pictureBoxPages.TabIndex = 68;
+            this.pictureBoxPages.TabStop = false;
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(18, 19);
-            this.buttonLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(138, 35);
-            this.buttonLogin.TabIndex = 73;
-            this.buttonLogin.Text = "Login";
-            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.listBoxPages.FormattingEnabled = true;
+            this.listBoxPages.ItemHeight = 16;
+            this.listBoxPages.Location = new System.Drawing.Point(664, 223);
+            this.listBoxPages.Name = "listBoxPages";
+            this.listBoxPages.Size = new System.Drawing.Size(207, 148);
+            this.listBoxPages.TabIndex = 67;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(999, 974);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.buttonPages.Location = new System.Drawing.Point(664, 194);
+            this.buttonPages.Name = "buttonPages";
+            this.buttonPages.Size = new System.Drawing.Size(207, 23);
+            this.buttonPages.TabIndex = 66;
+            this.buttonPages.Text = "Fetch Liked Pages";
+            this.buttonPages.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 

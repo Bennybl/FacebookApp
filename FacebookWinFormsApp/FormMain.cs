@@ -21,6 +21,9 @@ namespace BasicFacebookFeatures
         User m_LoggedInUser;
         LoginResult m_LoginResult;
 
+        User m_LoggedInUser;
+        LoginResult m_LoginResult;
+
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns20aa"); /// the current password for Desig Patter
@@ -46,18 +49,7 @@ namespace BasicFacebookFeatures
                     /// add any relevant permissions
                     );
 
-            buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-
-            if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
-            {
-                m_LoggedInUser = m_LoginResult.LoggedInUser;
-
-                fetchUserInfo();
-            }
-            else
-            {
-                MessageBox.Show(m_LoginResult.ErrorMessage, "Login Failed");
-            }
+            buttonLogin.Text = $"Logged in as {loginResult.LoggedInUser.Name}";
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -153,6 +145,74 @@ namespace BasicFacebookFeatures
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonFetchGroups_Click(object sender, EventArgs e)
+        {
+            listBoxGroups.Items.Clear();
+            listBoxGroups.DisplayMember = "Name";
+
+            try
+            {
+                foreach(Group group in m_LoggedInUser.Groups)
+                {
+                    listBoxGroups.Items.Add(group);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if(listBoxGroups.Items.Count == 0)
+            {
+                MessageBox.Show("The logged-in users has no groups.");
+            }
+        }
+
+        private void buttonPages_Click(object sender, EventArgs e)
+        {
+            listBoxPages.Items.Clear();
+            listBoxPages.DisplayMember = "Name";
+            try
+            {
+                foreach(Page page in m_LoggedInUser.LikedPages)
+                {
+                    listBoxPages.Items.Add(page);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if(listBoxPages.Items.Count == 0)
+            {
+                MessageBox.Show("The logged-in user has no liked pages");
+            }
+        }
+
+        private void listBoxPages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBoxPages.SelectedItems.Count == 1)
+            {
+                Page selectedPage = listBoxPages.SelectedItem as Page;
+                pictureBoxPages.LoadAsync(selectedPage.PictureNormalURL);
+            }
+        }
+
+        private void pictureBoxPages_Click(object sender, EventArgs e)
+        {
+ 
+        }
+
+        private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBoxGroups.SelectedItems.Count == 1)
+            {
+                Group selectedGroup = listBoxGroups.SelectedItem as Group;
+                pictureBoxGroups.LoadAsync(selectedGroup.PictureNormalURL);
+            }
         }
 
         ///FormAppSettings m_FormAppSettings = null;
