@@ -30,7 +30,6 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pictureBoxEvents = new System.Windows.Forms.PictureBox();
             this.pictureBoxGroups = new System.Windows.Forms.PictureBox();
             this.listBoxGroups = new System.Windows.Forms.ListBox();
@@ -52,6 +51,7 @@
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -104,16 +104,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "home page";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(999, 974);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // pictureBoxEvents
             // 
             this.pictureBoxEvents.BackColor = System.Drawing.Color.Gainsboro;
@@ -125,9 +115,9 @@
             // 
             // pictureBoxGroups
             // 
-            this.pictureBoxGroups.Location = new System.Drawing.Point(627, 378);
+            this.pictureBoxGroups.Location = new System.Drawing.Point(627, 359);
             this.pictureBoxGroups.Name = "pictureBoxGroups";
-            this.pictureBoxGroups.Size = new System.Drawing.Size(112, 86);
+            this.pictureBoxGroups.Size = new System.Drawing.Size(112, 105);
             this.pictureBoxGroups.TabIndex = 92;
             this.pictureBoxGroups.TabStop = false;
             // 
@@ -151,9 +141,9 @@
             // 
             // pictureBoxPages
             // 
-            this.pictureBoxPages.Location = new System.Drawing.Point(867, 378);
+            this.pictureBoxPages.Location = new System.Drawing.Point(867, 359);
             this.pictureBoxPages.Name = "pictureBoxPages";
-            this.pictureBoxPages.Size = new System.Drawing.Size(112, 86);
+            this.pictureBoxPages.Size = new System.Drawing.Size(112, 105);
             this.pictureBoxPages.TabIndex = 89;
             this.pictureBoxPages.TabStop = false;
             // 
@@ -300,6 +290,16 @@
             this.buttonLogin.TabIndex = 73;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(999, 974);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
