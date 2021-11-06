@@ -30,6 +30,12 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabHomePage = new System.Windows.Forms.TabPage();
+            this.pictureBoxFriends = new System.Windows.Forms.PictureBox();
+            this.pictureBoxAlbums = new System.Windows.Forms.PictureBox();
+            this.pictureBoxGroups = new System.Windows.Forms.PictureBox();
+            this.pictureBoxEvents = new System.Windows.Forms.PictureBox();
+            this.buttonSettings = new System.Windows.Forms.Button();
+            this.buttonAboutMe = new System.Windows.Forms.Button();
             this.listBoxAlbums = new System.Windows.Forms.ListBox();
             this.buttonFetchAlbums = new System.Windows.Forms.Button();
             this.listBoxGroups = new System.Windows.Forms.ListBox();
@@ -55,22 +61,15 @@
             this.listBoxNewsFeed = new System.Windows.Forms.ListBox();
             this.tabFeature1 = new System.Windows.Forms.TabPage();
             this.tabFeature2 = new System.Windows.Forms.TabPage();
-            this.buttonAboutMe = new System.Windows.Forms.Button();
-            this.buttonSettings = new System.Windows.Forms.Button();
-            this.textBoxCategory = new System.Windows.Forms.TextBox();
-            this.pictureBoxEvents = new System.Windows.Forms.PictureBox();
-            this.pictureBoxGroups = new System.Windows.Forms.PictureBox();
-            this.pictureBoxAlbums = new System.Windows.Forms.PictureBox();
-            this.pictureBoxFriends = new System.Windows.Forms.PictureBox();
             this.tabControl.SuspendLayout();
             this.tabHomePage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriends)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbums)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.tabNewsFeed.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvents)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbums)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriends)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -83,7 +82,7 @@
             this.tabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(895, 806);
+            this.tabControl.Size = new System.Drawing.Size(695, 618);
             this.tabControl.TabIndex = 0;
             // 
             // tabHomePage
@@ -93,7 +92,6 @@
             this.tabHomePage.Controls.Add(this.pictureBoxAlbums);
             this.tabHomePage.Controls.Add(this.pictureBoxGroups);
             this.tabHomePage.Controls.Add(this.pictureBoxEvents);
-            this.tabHomePage.Controls.Add(this.textBoxCategory);
             this.tabHomePage.Controls.Add(this.buttonSettings);
             this.tabHomePage.Controls.Add(this.buttonAboutMe);
             this.tabHomePage.Controls.Add(this.listBoxAlbums);
@@ -119,10 +117,69 @@
             this.tabHomePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabHomePage.Name = "tabHomePage";
             this.tabHomePage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabHomePage.Size = new System.Drawing.Size(887, 777);
+            this.tabHomePage.Size = new System.Drawing.Size(687, 589);
             this.tabHomePage.TabIndex = 0;
             this.tabHomePage.Text = "Home Page";
             this.tabHomePage.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // pictureBoxFriends
+            // 
+            this.pictureBoxFriends.Location = new System.Drawing.Point(151, 304);
+            this.pictureBoxFriends.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBoxFriends.Name = "pictureBoxFriends";
+            this.pictureBoxFriends.Size = new System.Drawing.Size(75, 67);
+            this.pictureBoxFriends.TabIndex = 103;
+            this.pictureBoxFriends.TabStop = false;
+            // 
+            // pictureBoxAlbums
+            // 
+            this.pictureBoxAlbums.Location = new System.Drawing.Point(147, 504);
+            this.pictureBoxAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBoxAlbums.Name = "pictureBoxAlbums";
+            this.pictureBoxAlbums.Size = new System.Drawing.Size(75, 67);
+            this.pictureBoxAlbums.TabIndex = 102;
+            this.pictureBoxAlbums.TabStop = false;
+            this.pictureBoxAlbums.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // pictureBoxGroups
+            // 
+            this.pictureBoxGroups.Location = new System.Drawing.Point(582, 304);
+            this.pictureBoxGroups.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBoxGroups.Name = "pictureBoxGroups";
+            this.pictureBoxGroups.Size = new System.Drawing.Size(75, 67);
+            this.pictureBoxGroups.TabIndex = 101;
+            this.pictureBoxGroups.TabStop = false;
+            // 
+            // pictureBoxEvents
+            // 
+            this.pictureBoxEvents.Location = new System.Drawing.Point(366, 304);
+            this.pictureBoxEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBoxEvents.Name = "pictureBoxEvents";
+            this.pictureBoxEvents.Size = new System.Drawing.Size(75, 67);
+            this.pictureBoxEvents.TabIndex = 100;
+            this.pictureBoxEvents.TabStop = false;
+            // 
+            // buttonSettings
+            // 
+            this.buttonSettings.Location = new System.Drawing.Point(16, 42);
+            this.buttonSettings.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(207, 28);
+            this.buttonSettings.TabIndex = 98;
+            this.buttonSettings.Text = "Settings";
+            this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
+            // 
+            // buttonAboutMe
+            // 
+            this.buttonAboutMe.Enabled = false;
+            this.buttonAboutMe.Location = new System.Drawing.Point(544, 535);
+            this.buttonAboutMe.Name = "buttonAboutMe";
+            this.buttonAboutMe.Size = new System.Drawing.Size(113, 36);
+            this.buttonAboutMe.TabIndex = 97;
+            this.buttonAboutMe.Text = "About Me!";
+            this.buttonAboutMe.UseVisualStyleBackColor = true;
+            this.buttonAboutMe.Click += new System.EventHandler(this.buttonAboutMe_Click);
             // 
             // listBoxAlbums
             // 
@@ -141,7 +198,7 @@
             this.buttonFetchAlbums.Location = new System.Drawing.Point(14, 396);
             this.buttonFetchAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonFetchAlbums.Name = "buttonFetchAlbums";
-            this.buttonFetchAlbums.Size = new System.Drawing.Size(211, 23);
+            this.buttonFetchAlbums.Size = new System.Drawing.Size(208, 23);
             this.buttonFetchAlbums.TabIndex = 94;
             this.buttonFetchAlbums.Text = "Fetch Albums";
             this.buttonFetchAlbums.UseVisualStyleBackColor = true;
@@ -172,7 +229,7 @@
             // 
             // pictureBoxPages
             // 
-            this.pictureBoxPages.Location = new System.Drawing.Point(796, 304);
+            this.pictureBoxPages.Location = new System.Drawing.Point(381, 504);
             this.pictureBoxPages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBoxPages.Name = "pictureBoxPages";
             this.pictureBoxPages.Size = new System.Drawing.Size(75, 67);
@@ -183,7 +240,7 @@
             // 
             this.listBoxPages.FormattingEnabled = true;
             this.listBoxPages.ItemHeight = 16;
-            this.listBoxPages.Location = new System.Drawing.Point(664, 223);
+            this.listBoxPages.Location = new System.Drawing.Point(249, 423);
             this.listBoxPages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxPages.Name = "listBoxPages";
             this.listBoxPages.Size = new System.Drawing.Size(207, 148);
@@ -193,7 +250,7 @@
             // buttonFetchPages
             // 
             this.buttonFetchPages.Enabled = false;
-            this.buttonFetchPages.Location = new System.Drawing.Point(664, 195);
+            this.buttonFetchPages.Location = new System.Drawing.Point(249, 396);
             this.buttonFetchPages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonFetchPages.Name = "buttonFetchPages";
             this.buttonFetchPages.Size = new System.Drawing.Size(206, 23);
@@ -251,7 +308,7 @@
             // buttonPostStatus
             // 
             this.buttonPostStatus.Enabled = false;
-            this.buttonPostStatus.Location = new System.Drawing.Point(796, 42);
+            this.buttonPostStatus.Location = new System.Drawing.Point(582, 45);
             this.buttonPostStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonPostStatus.Name = "buttonPostStatus";
             this.buttonPostStatus.Size = new System.Drawing.Size(75, 23);
@@ -263,7 +320,7 @@
             // labelPostsStatus
             // 
             this.labelPostsStatus.AutoSize = true;
-            this.labelPostsStatus.Location = new System.Drawing.Point(469, 16);
+            this.labelPostsStatus.Location = new System.Drawing.Point(229, 16);
             this.labelPostsStatus.Name = "labelPostsStatus";
             this.labelPostsStatus.Size = new System.Drawing.Size(78, 16);
             this.labelPostsStatus.TabIndex = 81;
@@ -271,16 +328,16 @@
             // 
             // textBoxPostStatus
             // 
-            this.textBoxPostStatus.Location = new System.Drawing.Point(587, 13);
+            this.textBoxPostStatus.Location = new System.Drawing.Point(322, 16);
             this.textBoxPostStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxPostStatus.Name = "textBoxPostStatus";
-            this.textBoxPostStatus.Size = new System.Drawing.Size(284, 22);
+            this.textBoxPostStatus.Size = new System.Drawing.Size(335, 22);
             this.textBoxPostStatus.TabIndex = 80;
             // 
             // buttonFetchPosts
             // 
             this.buttonFetchPosts.Enabled = false;
-            this.buttonFetchPosts.Location = new System.Drawing.Point(291, 42);
+            this.buttonFetchPosts.Location = new System.Drawing.Point(232, 45);
             this.buttonFetchPosts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonFetchPosts.Name = "buttonFetchPosts";
             this.buttonFetchPosts.Size = new System.Drawing.Size(101, 23);
@@ -293,15 +350,15 @@
             // 
             this.listBoxPosts.FormattingEnabled = true;
             this.listBoxPosts.ItemHeight = 16;
-            this.listBoxPosts.Location = new System.Drawing.Point(291, 71);
+            this.listBoxPosts.Location = new System.Drawing.Point(232, 75);
             this.listBoxPosts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxPosts.Name = "listBoxPosts";
-            this.listBoxPosts.Size = new System.Drawing.Size(582, 116);
+            this.listBoxPosts.Size = new System.Drawing.Size(427, 116);
             this.listBoxPosts.TabIndex = 78;
             // 
             // pictureBoxProfile
             // 
-            this.pictureBoxProfile.Location = new System.Drawing.Point(69, 76);
+            this.pictureBoxProfile.Location = new System.Drawing.Point(39, 75);
             this.pictureBoxProfile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
             this.pictureBoxProfile.Size = new System.Drawing.Size(154, 111);
@@ -311,10 +368,10 @@
             // 
             // buttonLogout
             // 
-            this.buttonLogout.Location = new System.Drawing.Point(147, 10);
+            this.buttonLogout.Location = new System.Drawing.Point(126, 10);
             this.buttonLogout.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogout.Name = "buttonLogout";
-            this.buttonLogout.Size = new System.Drawing.Size(123, 28);
+            this.buttonLogout.Size = new System.Drawing.Size(96, 28);
             this.buttonLogout.TabIndex = 74;
             this.buttonLogout.Text = "Logout";
             this.buttonLogout.UseVisualStyleBackColor = true;
@@ -325,7 +382,7 @@
             this.buttonLogin.Location = new System.Drawing.Point(16, 10);
             this.buttonLogin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(123, 28);
+            this.buttonLogin.Size = new System.Drawing.Size(102, 28);
             this.buttonLogin.TabIndex = 73;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = true;
@@ -340,7 +397,7 @@
             this.tabNewsFeed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabNewsFeed.Name = "tabNewsFeed";
             this.tabNewsFeed.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabNewsFeed.Size = new System.Drawing.Size(887, 777);
+            this.tabNewsFeed.Size = new System.Drawing.Size(659, 574);
             this.tabNewsFeed.TabIndex = 1;
             this.tabNewsFeed.Text = "News Feed";
             this.tabNewsFeed.UseVisualStyleBackColor = true;
@@ -350,7 +407,7 @@
             // 
             this.labelNewsFeed.AutoSize = true;
             this.labelNewsFeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelNewsFeed.Location = new System.Drawing.Point(66, 23);
+            this.labelNewsFeed.Location = new System.Drawing.Point(28, 23);
             this.labelNewsFeed.Name = "labelNewsFeed";
             this.labelNewsFeed.Size = new System.Drawing.Size(178, 37);
             this.labelNewsFeed.TabIndex = 3;
@@ -360,7 +417,7 @@
             // buttonRefresh
             // 
             this.buttonRefresh.Enabled = false;
-            this.buttonRefresh.Location = new System.Drawing.Point(317, 31);
+            this.buttonRefresh.Location = new System.Drawing.Point(251, 31);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(75, 29);
             this.buttonRefresh.TabIndex = 2;
@@ -372,9 +429,9 @@
             // 
             this.listBoxNewsFeed.FormattingEnabled = true;
             this.listBoxNewsFeed.ItemHeight = 16;
-            this.listBoxNewsFeed.Location = new System.Drawing.Point(73, 74);
+            this.listBoxNewsFeed.Location = new System.Drawing.Point(35, 82);
             this.listBoxNewsFeed.Name = "listBoxNewsFeed";
-            this.listBoxNewsFeed.Size = new System.Drawing.Size(720, 404);
+            this.listBoxNewsFeed.Size = new System.Drawing.Size(536, 404);
             this.listBoxNewsFeed.TabIndex = 0;
             // 
             // tabFeature1
@@ -383,7 +440,7 @@
             this.tabFeature1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabFeature1.Name = "tabFeature1";
             this.tabFeature1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabFeature1.Size = new System.Drawing.Size(887, 777);
+            this.tabFeature1.Size = new System.Drawing.Size(659, 574);
             this.tabFeature1.TabIndex = 2;
             this.tabFeature1.Text = "Feature 1";
             this.tabFeature1.UseVisualStyleBackColor = true;
@@ -393,82 +450,17 @@
             this.tabFeature2.Location = new System.Drawing.Point(4, 25);
             this.tabFeature2.Name = "tabFeature2";
             this.tabFeature2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFeature2.Size = new System.Drawing.Size(887, 777);
+            this.tabFeature2.Size = new System.Drawing.Size(659, 574);
             this.tabFeature2.TabIndex = 3;
             this.tabFeature2.Text = "Feature 2";
             this.tabFeature2.UseVisualStyleBackColor = true;
-            // 
-            // buttonAboutMe
-            // 
-            this.buttonAboutMe.Enabled = false;
-            this.buttonAboutMe.Location = new System.Drawing.Point(757, 535);
-            this.buttonAboutMe.Name = "buttonAboutMe";
-            this.buttonAboutMe.Size = new System.Drawing.Size(113, 36);
-            this.buttonAboutMe.TabIndex = 97;
-            this.buttonAboutMe.Text = "About Me!";
-            this.buttonAboutMe.UseVisualStyleBackColor = true;
-            this.buttonAboutMe.Click += new System.EventHandler(this.buttonAboutMe_Click);
-            // 
-            // buttonSettings
-            // 
-            this.buttonSettings.Location = new System.Drawing.Point(16, 42);
-            this.buttonSettings.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.Size = new System.Drawing.Size(254, 28);
-            this.buttonSettings.TabIndex = 98;
-            this.buttonSettings.Text = "Settings";
-            this.buttonSettings.UseVisualStyleBackColor = true;
-            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
-            // 
-            // textBoxCategory
-            // 
-            this.textBoxCategory.Location = new System.Drawing.Point(664, 376);
-            this.textBoxCategory.Name = "textBoxCategory";
-            this.textBoxCategory.Size = new System.Drawing.Size(207, 22);
-            this.textBoxCategory.TabIndex = 99;
-            // 
-            // pictureBoxEvents
-            // 
-            this.pictureBoxEvents.Location = new System.Drawing.Point(366, 304);
-            this.pictureBoxEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxEvents.Name = "pictureBoxEvents";
-            this.pictureBoxEvents.Size = new System.Drawing.Size(75, 67);
-            this.pictureBoxEvents.TabIndex = 100;
-            this.pictureBoxEvents.TabStop = false;
-            // 
-            // pictureBoxGroups
-            // 
-            this.pictureBoxGroups.Location = new System.Drawing.Point(582, 304);
-            this.pictureBoxGroups.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxGroups.Name = "pictureBoxGroups";
-            this.pictureBoxGroups.Size = new System.Drawing.Size(75, 67);
-            this.pictureBoxGroups.TabIndex = 101;
-            this.pictureBoxGroups.TabStop = false;
-            // 
-            // pictureBoxAlbums
-            // 
-            this.pictureBoxAlbums.Location = new System.Drawing.Point(147, 504);
-            this.pictureBoxAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxAlbums.Name = "pictureBoxAlbums";
-            this.pictureBoxAlbums.Size = new System.Drawing.Size(75, 67);
-            this.pictureBoxAlbums.TabIndex = 102;
-            this.pictureBoxAlbums.TabStop = false;
-            this.pictureBoxAlbums.Click += new System.EventHandler(this.pictureBox3_Click);
-            // 
-            // pictureBoxFriends
-            // 
-            this.pictureBoxFriends.Location = new System.Drawing.Point(151, 304);
-            this.pictureBoxFriends.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxFriends.Name = "pictureBoxFriends";
-            this.pictureBoxFriends.Size = new System.Drawing.Size(75, 67);
-            this.pictureBoxFriends.TabIndex = 103;
-            this.pictureBoxFriends.TabStop = false;
+            this.tabFeature2.Click += new System.EventHandler(this.tabFeature2_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 615);
+            this.ClientSize = new System.Drawing.Size(710, 630);
             this.Controls.Add(this.tabControl);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
@@ -478,14 +470,14 @@
             this.tabControl.ResumeLayout(false);
             this.tabHomePage.ResumeLayout(false);
             this.tabHomePage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriends)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbums)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.tabNewsFeed.ResumeLayout(false);
             this.tabNewsFeed.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvents)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbums)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriends)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -521,7 +513,6 @@
         private System.Windows.Forms.Button buttonFetchAlbums;
         private System.Windows.Forms.Button buttonAboutMe;
         private System.Windows.Forms.Button buttonSettings;
-        private System.Windows.Forms.TextBox textBoxCategory;
         private System.Windows.Forms.PictureBox pictureBoxFriends;
         private System.Windows.Forms.PictureBox pictureBoxAlbums;
         private System.Windows.Forms.PictureBox pictureBoxGroups;

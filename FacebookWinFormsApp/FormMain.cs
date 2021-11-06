@@ -257,6 +257,7 @@ namespace BasicFacebookFeatures
                 }
             }
 
+
             if(listBoxPosts.Items.Count == 0)
             {
                 MessageBox.Show("No Posts to retrieve :(");
@@ -392,8 +393,6 @@ namespace BasicFacebookFeatures
             {
                 Page selectedPage = listBoxPages.SelectedItem as Page;
                 pictureBoxPages.LoadAsync(selectedPage.PictureSmallURL);
-                textBoxCategory.Text = selectedPage.Category;
-                MessageBox.Show(selectedPage.Category);
             }
         }
 
@@ -449,6 +448,11 @@ namespace BasicFacebookFeatures
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabFeature2_Click(object sender, EventArgs e)
         {
 
         }
