@@ -16,7 +16,8 @@ namespace BasicFacebookFeatures
     public partial class FormMain : Form
     {
         User m_LoggedInUser;
-        LoginResult m_LoginResult;        
+        LoginResult m_LoginResult;
+        Dictionary<String, List<Event>> m_citiesAndEvents = new Dictionary<string, List<Event>>();
 
         public FormMain()
         {
@@ -55,9 +56,9 @@ namespace BasicFacebookFeatures
             if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
             {
                 m_LoggedInUser = m_LoginResult.LoggedInUser;
-
                 fetchUserInfo();
                 changeButtonsStatus();
+                fetchCitiesAndEvents();
             }
             else
             {
@@ -83,6 +84,52 @@ namespace BasicFacebookFeatures
             listBoxPages.Items.Clear();
             listBoxNewsFeed.Items.Clear();
             listBoxPosts.Items.Clear();
+        }
+
+        private void fetchCitiesAndEvents()
+        {
+            foreach(Event selectedEvent in m_LoggedInUser.Events)
+            {
+                addEvent(selectedEvent);
+            }
+            if(m_LoggedInUser.Friends != null)
+            {
+                foreach(User friend in m_LoggedInUser.Friends)
+                {
+                    foreach(Event selectedEvent in friend.Events)
+                    {
+                        addEvent(selectedEvent);
+                    }
+                }
+            }
+            foreach(String cityName in m_citiesAndEvents.Keys)
+            {
+                listBoxCities.Items.Add(cityName);
+            }
+        }
+
+        private void addEvent(Event i_selectedEvent)
+        {
+            String city = i_selectedEvent.Place.Location.City;
+            if(!m_citiesAndEvents.ContainsKey(city))
+            {
+                m_citiesAndEvents.Add(city, new List<Event>());
+            }
+            m_citiesAndEvents[city].Add(i_selectedEvent);
+        }
+
+        private void listBoxCities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBoxCities.SelectedItems.Count == 1)
+            {
+                listBoxEventsByCity.Items.Clear();
+                String city = listBoxCities.SelectedItem.ToString();
+                foreach(Event selectedEvent in m_citiesAndEvents[city])
+                {
+                    listBoxEventsByCity.Items.Add(selectedEvent);
+                }
+            }
+
         }
 
         private void fetchUserInfo()
@@ -129,11 +176,12 @@ namespace BasicFacebookFeatures
 
         private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxEvents.SelectedItems.Count == 1)
+            if(listBoxEvents.SelectedItems.Count == 1)
             {
                 Event selectedEvent = listBoxEvents.SelectedItem as Event;
                 pictureBoxEvents.LoadAsync(selectedEvent.Cover.SourceURL);
             }
+
         }
 
         private void buttonFetchFriends_Click(object sender, EventArgs e)
@@ -402,6 +450,7 @@ namespace BasicFacebookFeatures
             {
                 Group selectedGroup = listBoxGroups.SelectedItem as Group;
                 pictureBoxGroups.LoadAsync(selectedGroup.PictureSmallURL);
+                
             }
         }
 
@@ -455,6 +504,20 @@ namespace BasicFacebookFeatures
         private void tabFeature2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBoxCity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonEventDetails_Click(object sender, EventArgs e)
+        {
+            if(listBoxEventsByCity.Items.Count == 1)
+            {
+                FormEvent formEvent = new FormEvent(listBoxEventsByCity.SelectedItem as Event);
+                formEvent.ShowDialog();
+            }
         }
     }
 }
