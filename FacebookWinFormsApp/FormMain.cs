@@ -596,9 +596,10 @@ namespace BasicFacebookFeatures
 
             foreach(User user_i in m_LoggedInUser.Friends)
             {
+                Friend friend = user_i;
                 foreach (User user_j in user_i.Friends)
                 {
-
+                    Friend friend = 
                 }
             }
             return null;
