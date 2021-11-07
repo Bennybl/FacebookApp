@@ -18,11 +18,16 @@ namespace BasicFacebookFeatures
         User m_LoggedInUser;
         LoginResult m_LoginResult;
         Dictionary<String, List<Event>> m_citiesAndEvents = new Dictionary<string, List<Event>>();
+        Dictionary<String, string[]> m_comboBoxFacebookObjectsOptional = new Dictionary<string, string[]>();
+
 
         public FormMain()
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
+            m_comboBoxFacebookObjectsOptional.Add("Pages", new string[] { "Most liked Pages", "Oldest Page"});
+            m_comboBoxFacebookObjectsOptional.Add("Friends", new string[] { "Friends with post mutual Friends", "Friends with צost Friends" });
+            m_comboBoxFacebookObjectsOptional.Add("Groups", new string[] { "Groups with most members", "Groups with most friends" });
         }
         
 
@@ -518,6 +523,69 @@ namespace BasicFacebookFeatures
                 FormEvent formEvent = new FormEvent(listBoxEventsByCity.SelectedItem as Event);
                 formEvent.ShowDialog();
             }
+        }
+
+        private void comboBoxFacebookObjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItem = comboBoxFacebookObjects.SelectedItem.ToString();
+
+            comboBoxFacebookObjectsOptions.Items.Clear();
+            comboBoxFacebookObjectsOptions.Items.AddRange(m_comboBoxFacebookObjectsOptional[selectedItem]);
+        }
+
+        private void comboBoxFacebookObjectsOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            switch (comboBoxFacebookObjectsOptions.SelectedItem)
+            {
+                case "Most liked Pages":
+                    listBoxFacebookItems.Items.Clear();
+                    listBoxFacebookItems.Items.Add("Most liked Pages");
+                    List<Page> sortedPagesByLikes = m_LoggedInUser.LikedPages.OrderBy(o => o.LikesCount).ToList();
+                    foreach (Page page in sortedPagesByLikes)
+                    {
+                        listBoxFacebookItems.Items.Add(page.LikesCount);
+                    }
+                    break;
+
+                case "Oldest Page":
+
+                    listBoxFacebookItems.Items.Add("Oldest Page");
+                    break;
+
+                case "Friends with post mutual Friends":
+                    listBoxFacebookItems.Items.Clear();
+                   
+                    listBoxFacebookItems.Items.Add("Friends with post mutual Friends");
+                    break;
+
+                case "Friends with most Friends":
+                    listBoxFacebookItems.Items.Clear();
+                    List<User> sortedFriendsByFriends = m_LoggedInUser.Friends.OrderBy(o => o.Friends.Count).ToList();
+                    foreach (User friend in sortedFriendsByFriends)
+                    {
+                        listBoxFacebookItems.Items.Add(friend);
+                    }
+                    listBoxFacebookItems.Items.Add("Friends with most Friends");
+                    break;
+
+                case "Groups with most members":
+                    listBoxFacebookItems.Items.Clear();
+                    listBoxFacebookItems.Items.Add("Groups with most members");
+                    break;
+
+                case "Groups with most friends":
+                    listBoxFacebookItems.Items.Clear();
+                    listBoxFacebookItems.Items.Add("Groups with most friends");
+                    break;
+
+            }
+
+        }
+        
+private void listBoxFacebookItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
