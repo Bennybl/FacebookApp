@@ -8,7 +8,7 @@ using FacebookWrapper;
 
 namespace BasicFacebookFeatures
 {
-    class Friend : User 
+    class GroupExtend : Group
     {
         public List<User> m_MutuaLFrinds;
 

@@ -25,8 +25,8 @@ namespace BasicFacebookFeatures
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
-            m_comboBoxFacebookObjectsOptional.Add("Pages", new string[] { "Most liked Pages", "Oldest Page"});
-            m_comboBoxFacebookObjectsOptional.Add("Friends", new string[] { "Friends with post mutual Friends", "Friends with צost Friends" });
+            m_comboBoxFacebookObjectsOptional.Add("Pages", new string[] { "Most liked Pages", "Oldest Page" });
+            m_comboBoxFacebookObjectsOptional.Add("Friends", new string[] { "Friends with post mutual Friends", "Friends with most Friends" });
             m_comboBoxFacebookObjectsOptional.Add("Groups", new string[] { "Groups with most members", "Groups with most friends" });
         }
         
@@ -317,7 +317,6 @@ namespace BasicFacebookFeatures
             }
         }
 
-
         private void buttonFetchPages_Click(object sender, EventArgs e)
         {
             fetchPages();
@@ -541,7 +540,7 @@ namespace BasicFacebookFeatures
             {
                 case "Most liked Pages":
                     listBoxFacebookItems.Items.Clear();
-                    listBoxFacebookItems.Items.Add("Most liked Pages");
+             
                     List<Page> sortedPagesByLikes = m_LoggedInUser.LikedPages.OrderBy(o => o.LikesCount).ToList();
                     foreach (Page page in sortedPagesByLikes)
                     {
@@ -551,13 +550,15 @@ namespace BasicFacebookFeatures
 
                 case "Oldest Page":
 
-                    listBoxFacebookItems.Items.Add("Oldest Page");
+                    listBoxFacebookItems.Items.Clear();
                     break;
 
                 case "Friends with post mutual Friends":
                     listBoxFacebookItems.Items.Clear();
-                   
-                    listBoxFacebookItems.Items.Add("Friends with post mutual Friends");
+                    foreach (Friend friend in sotrtedMutualFreinds())
+                    {
+                        listBoxFacebookItems.Items.Add(friend);
+                    }
                     break;
 
                 case "Friends with most Friends":
@@ -576,35 +577,65 @@ namespace BasicFacebookFeatures
                     {
                         listBoxFacebookItems.Items.Add(group);
                     }
-                    
                     break;
 
                 case "Groups with most friends":
                     listBoxFacebookItems.Items.Clear();
-                    listBoxFacebookItems.Items.Add("Groups with most friends");
+                    foreach(GroupExtend group in sotrtedMutualFreindsInGroup())
+                    {
+                        listBoxFacebookItems.Items.Add(group);
+                    }
                     break;
-
             }
-
-            
         }
 
-
-        private List<User> sotrtedMutualFreinds()
+        private List<Friend> sotrtedMutualFreinds()
         {
-            var tupleList = new List<(User user, int num)>();
+            List<Friend> friendList = new List<Friend>();
 
             foreach(User user_i in m_LoggedInUser.Friends)
             {
-                Friend friend = user_i;
+                Friend friend;
+                friend = user_i as Friend;
+                
                 foreach (User user_j in user_i.Friends)
                 {
-                    Friend friend = 
+                    if (friend.Friends.Contains((user_j)))
+                    {
+                        friend.AddMutualFriends((user_j));
+                    }
+
                 }
+                friendList.Add(friend);
             }
-            return null;
+            friendList.OrderBy(o => o.m_MutuaLFrinds.Count).ToList();
+            return friendList;
         }
-        
+
+        private List<GroupExtend> sotrtedMutualFreindsInGroup()
+        {
+            List<GroupExtend> gruopList = new List<GroupExtend>();
+
+            foreach (Group gruop_i in m_LoggedInUser.Groups)
+            {
+                
+                GroupExtend group;
+                group = gruop_i as GroupExtend;
+
+                foreach (User user_j in gruop_i.Members)
+                {
+                    if (group.Members.Contains((user_j)))
+                    {
+                        group.AddMutualFriends((user_j));
+                    }
+
+                }
+                gruopList.Add(group);
+            }
+            gruopList.OrderBy(o => o.m_MutuaLFrinds.Count).ToList();
+            return gruopList;
+        }
+
         private void listBoxFacebookItems_SelectedIndexChanged(object sender, EventArgs e)
             {
             listBoxFacebookItems.Items.Clear();
