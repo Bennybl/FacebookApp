@@ -530,6 +530,7 @@ namespace BasicFacebookFeatures
             string selectedItem = comboBoxFacebookObjects.SelectedItem.ToString();
 
             comboBoxFacebookObjectsOptions.Items.Clear();
+            
             comboBoxFacebookObjectsOptions.Items.AddRange(m_comboBoxFacebookObjectsOptional[selectedItem]);
         }
 
@@ -544,7 +545,7 @@ namespace BasicFacebookFeatures
                     List<Page> sortedPagesByLikes = m_LoggedInUser.LikedPages.OrderBy(o => o.LikesCount).ToList();
                     foreach (Page page in sortedPagesByLikes)
                     {
-                        listBoxFacebookItems.Items.Add(page.LikesCount);
+                        listBoxFacebookItems.Items.Add(page);
                     }
                     break;
 
@@ -566,12 +567,16 @@ namespace BasicFacebookFeatures
                     {
                         listBoxFacebookItems.Items.Add(friend);
                     }
-                    listBoxFacebookItems.Items.Add("Friends with most Friends");
                     break;
 
                 case "Groups with most members":
                     listBoxFacebookItems.Items.Clear();
-                    listBoxFacebookItems.Items.Add("Groups with most members");
+                    List<Group> sortedGroupByMembers = m_LoggedInUser.Groups.OrderBy(o => o.Members.Count).ToList();
+                    foreach (Group group in sortedGroupByMembers)
+                    {
+                        listBoxFacebookItems.Items.Add(group);
+                    }
+                    
                     break;
 
                 case "Groups with most friends":
@@ -581,10 +586,53 @@ namespace BasicFacebookFeatures
 
             }
 
+            
+        }
+
+
+        private List<User> sotrtedMutualFreinds()
+        {
+            var tupleList = new List<(User user, int num)>();
+
+            foreach(User user_i in m_LoggedInUser.Friends)
+            {
+                foreach (User user_j in user_i.Friends)
+                {
+
+                }
+            }
+            return null;
         }
         
-private void listBoxFacebookItems_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void listBoxFacebookItems_SelectedIndexChanged(object sender, EventArgs e)
+            {
+            listBoxFacebookItems.Items.Clear();
+            if (listBoxFriends.SelectedItems.Count == 1)
+            {
+                object selectedItem;
+                switch (comboBoxFacebookObjects.SelectedItem.ToString())
+                {
+                    case "Pages":
+                        selectedItem = listBoxFriends.SelectedItem as Page;
+
+                        break;
+
+                    case "Friends":
+                        selectedItem = listBoxFriends.SelectedItem as User;
+          
+                        break;
+
+                    case "Groups":
+                        selectedItem = listBoxFriends.SelectedItem as Group;
+                        break;
+                }
+                List<Post> sortedPostByLikes = m_LoggedInUser.Posts.OrderBy(o => o.LikedBy.Count).ToList();
+                foreach (Post post in sortedPostByLikes)
+                {
+                    listBoxFacebookItems.Items.Add(post);
+                }
+
+            }
 
         }
     }
