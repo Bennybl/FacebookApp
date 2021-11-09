@@ -169,6 +169,35 @@
             this.pictureBoxGroups.Size = new System.Drawing.Size(84, 83);
             this.pictureBoxGroups.TabIndex = 101;
             this.pictureBoxGroups.TabStop = false;
+            this.tabPage1.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabPage1.Controls.Add(this.pictureBoxEvents);
+            this.tabPage1.Controls.Add(this.pictureBoxGroups);
+            this.tabPage1.Controls.Add(this.listBoxGroups);
+            this.tabPage1.Controls.Add(this.buttonFetchGroups);
+            this.tabPage1.Controls.Add(this.pictureBoxPages);
+            this.tabPage1.Controls.Add(this.listBoxPages);
+            this.tabPage1.Controls.Add(this.buttonPages);
+            this.tabPage1.Controls.Add(this.listBoxFetchEvents);
+            this.tabPage1.Controls.Add(this.buttonEvents);
+            this.tabPage1.Controls.Add(this.pictureBoxFriendsProfile);
+            this.tabPage1.Controls.Add(this.listBoxFetchFriends);
+            this.tabPage1.Controls.Add(this.buttonFetchFriends);
+            this.tabPage1.Controls.Add(this.buttonPostStatus);
+            this.tabPage1.Controls.Add(this.labelPostsStatus);
+            this.tabPage1.Controls.Add(this.textBoxPostStatus);
+            this.tabPage1.Controls.Add(this.buttonFetchPosts);
+            this.tabPage1.Controls.Add(this.listBoxPosts);
+            this.tabPage1.Controls.Add(this.buttonSettings);
+            this.tabPage1.Controls.Add(this.pictureBoxProfile);
+            this.tabPage1.Controls.Add(this.buttonLogout);
+            this.tabPage1.Controls.Add(this.buttonLogin);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Size = new System.Drawing.Size(663, 629);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "home page";
             // 
             // pictureBoxEvents
             // 
@@ -178,7 +207,7 @@
             this.pictureBoxEvents.TabIndex = 100;
             this.pictureBoxEvents.TabStop = false;
             // 
-            // buttonSettings
+            // pictureBoxGroups
             // 
             this.buttonSettings.Location = new System.Drawing.Point(18, 52);
             this.buttonSettings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -340,7 +369,7 @@
             this.textBoxPostStatus.Size = new System.Drawing.Size(376, 26);
             this.textBoxPostStatus.TabIndex = 80;
             // 
-            // buttonFetchPosts
+            // buttonFetchGroups
             // 
             this.buttonFetchPosts.Enabled = false;
             this.buttonFetchPosts.Location = new System.Drawing.Point(261, 57);

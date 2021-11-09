@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
@@ -25,11 +24,9 @@ namespace BasicFacebookFeatures
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
-            m_comboBoxFacebookObjectsOptional.Add("Pages", new string[] { "Most liked Pages", "Oldest Page" });
-            m_comboBoxFacebookObjectsOptional.Add("Friends", new string[] { "Friends with post mutual Friends", "Friends with most Friends" });
-            m_comboBoxFacebookObjectsOptional.Add("Groups", new string[] { "Groups with most members", "Groups with most friends" });
         }
         
+
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -65,9 +62,10 @@ namespace BasicFacebookFeatures
                 changeButtonsStatus();
                 fetchCitiesAndEvents();
             }
-            else
+
+            if (listBoxPages.Items.Count == 0)
             {
-                MessageBox.Show(m_LoginResult.ErrorMessage, "Login Failed");
+                MessageBox.Show("No Friends to retrieve :(");
             }
         }
 
