@@ -645,23 +645,23 @@ namespace BasicFacebookFeatures
                 switch (comboBoxFacebookObjects.SelectedItem.ToString())
                 {
                     case "Pages":
-                        selectedItem = listBoxFriends.SelectedItem as Page;
+                        selectedItem = listBoxFacebookItems.SelectedItem as Page;
 
                         break;
 
                     case "Friends":
-                        selectedItem = listBoxFriends.SelectedItem as User;
+                        selectedItem = listBoxFacebookItems.SelectedItem as User;
           
                         break;
 
                     case "Groups":
-                        selectedItem = listBoxFriends.SelectedItem as Group;
+                        selectedItem = listBoxFacebookItems.SelectedItem as Group;
                         break;
                 }
                 List<Post> sortedPostByLikes = m_LoggedInUser.Posts.OrderBy(o => o.LikedBy.Count).ToList();
                 foreach (Post post in sortedPostByLikes)
                 {
-                    listBoxFacebookItems.Items.Add(post);
+                    listBoxPost.Items.Add(post);
                 }
 
             }
