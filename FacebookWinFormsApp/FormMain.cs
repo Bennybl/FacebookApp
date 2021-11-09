@@ -638,7 +638,7 @@ namespace BasicFacebookFeatures
 
         private void listBoxFacebookItems_SelectedIndexChanged(object sender, EventArgs e)
             {
-            listBoxFacebookItems.Items.Clear();
+            listBoxPost.Items.Clear();
             if (listBoxFriends.SelectedItems.Count == 1)
             {
                 object selectedItem;
