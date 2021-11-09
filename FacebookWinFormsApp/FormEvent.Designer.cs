@@ -35,6 +35,8 @@ namespace BasicFacebookFeatures
             this.labelTime = new System.Windows.Forms.Label();
             this.labelLocation = new System.Windows.Forms.Label();
             this.labelOwner = new System.Windows.Forms.Label();
+            this.pictureBoxEvent = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvent)).BeginInit();
             this.SuspendLayout();
             // 
             // labelEventName
@@ -98,11 +100,20 @@ namespace BasicFacebookFeatures
             this.labelOwner.TabIndex = 7;
             this.labelOwner.Text = "OwnerLabel";
             // 
+            // pictureBoxEvent
+            // 
+            this.pictureBoxEvent.Location = new System.Drawing.Point(29, 76);
+            this.pictureBoxEvent.Name = "pictureBoxEvent";
+            this.pictureBoxEvent.Size = new System.Drawing.Size(161, 117);
+            this.pictureBoxEvent.TabIndex = 8;
+            this.pictureBoxEvent.TabStop = false;
+            // 
             // FormEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 454);
+            this.ClientSize = new System.Drawing.Size(545, 479);
+            this.Controls.Add(this.pictureBoxEvent);
             this.Controls.Add(this.labelOwner);
             this.Controls.Add(this.labelLocation);
             this.Controls.Add(this.labelTime);
@@ -112,6 +123,7 @@ namespace BasicFacebookFeatures
             this.Name = "FormEvent";
             this.Text = "Formevent";
             this.Load += new System.EventHandler(this.Formevent_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +137,6 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label labelLocation;
         private System.Windows.Forms.Label labelOwner;
+        private System.Windows.Forms.PictureBox pictureBoxEvent;
     }
 }

@@ -18,6 +18,10 @@ namespace BasicFacebookFeatures
         {
             InitializeComponent();
             m_Event = i_Event;
+            if(i_Event.PictureNormalURL != null)
+            {
+                pictureBoxEvent.LoadAsync(i_Event.PictureNormalURL);
+            }
             DateTime start = (DateTime) i_Event.StartTime;
             DateTime end = (DateTime)i_Event.EndTime;
             labelEventName.Text = i_Event.Name.ToString();
@@ -26,7 +30,6 @@ namespace BasicFacebookFeatures
             labelOwner.Text = i_Event.Owner == null ? "Owner Unavailable" : i_Event.Owner.Name;
             labelAttending.Text = $"Attending: {i_Event.AttendingCount}";
             retriveAttending();
-            
         }
 
         private void retriveAttending()

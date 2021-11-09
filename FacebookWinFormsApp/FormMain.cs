@@ -16,18 +16,19 @@ namespace BasicFacebookFeatures
     {
         User m_LoggedInUser;
         LoginResult m_LoginResult;
-        Dictionary<String, List<Event>> m_citiesAndEvents = new Dictionary<string, List<Event>>();
-        Dictionary<String, string[]> m_comboBoxFacebookObjectsOptional = new Dictionary<string, string[]>();
-
-
-        public FormMain()
+        Dictionary<string, List<Event>> m_citiesAndEvents = new Dictionary<string, List<Event>>();
+        Dictionary<string, List<Page>> m_citiesAndRestaurants = new Dictionary<string, List<Page>>();
+        Dictionary<string, string[]> m_comboBoxFacebookObjectsOptional = new Dictionary<string, string[]>();
+        
+public FormMain()
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
+            m_comboBoxFacebookObjectsOptional.Add("Pages", new string[] { "Most liked Pages", "Oldest Page" });
+            m_comboBoxFacebookObjectsOptional.Add("Friends", new string[] { "Friends with post mutual Friends", "Friends with most Friends" });
+            m_comboBoxFacebookObjectsOptional.Add("Groups", new string[] { "Groups with most members", "Groups with most friends" });
         }
         
-
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns20aa"); /// the current password for Desig Patter
@@ -60,7 +61,7 @@ namespace BasicFacebookFeatures
                 m_LoggedInUser = m_LoginResult.LoggedInUser;
                 fetchUserInfo();
                 changeButtonsStatus();
-                fetchCitiesAndEvents();
+                fetchCitiesEventsRestaurants();
             }
 
             if (listBoxPages.Items.Count == 0)
@@ -89,11 +90,18 @@ namespace BasicFacebookFeatures
             listBoxPosts.Items.Clear();
         }
 
-        private void fetchCitiesAndEvents()
+        private void fetchCitiesEventsRestaurants()
         {
             foreach(Event selectedEvent in m_LoggedInUser.Events)
             {
                 addEvent(selectedEvent);
+            }
+            foreach(Page selectedPage in m_LoggedInUser.LikedPages)
+            {
+                if(selectedPage.Category != null && selectedPage.Category.Equals("Restaurant"))
+                {
+                    addRestaurant(selectedPage);
+                }
             }
             if(m_LoggedInUser.Friends != null)
             {
@@ -103,9 +111,16 @@ namespace BasicFacebookFeatures
                     {
                         addEvent(selectedEvent);
                     }
+                    foreach(Page selectedPage in m_LoggedInUser.LikedPages)
+                    {
+                        if(selectedPage.Category != null)// && selectedPage.Category.Equals("Restaurant"))
+                        {
+                            addRestaurant(selectedPage);
+                        }
+                    }
                 }
             }
-            foreach(String cityName in m_citiesAndEvents.Keys)
+            foreach(string cityName in m_citiesAndEvents.Keys)
             {
                 listBoxCities.Items.Add(cityName);
             }
@@ -113,12 +128,28 @@ namespace BasicFacebookFeatures
 
         private void addEvent(Event i_selectedEvent)
         {
-            String city = i_selectedEvent.Place.Location.City;
-            if(!m_citiesAndEvents.ContainsKey(city))
+            if(i_selectedEvent.Place.Location.City != null)
             {
-                m_citiesAndEvents.Add(city, new List<Event>());
+                string city = i_selectedEvent.Place.Location.City;
+                if(!m_citiesAndEvents.ContainsKey(city))
+                {
+                    m_citiesAndEvents.Add(city, new List<Event>());
+                }
+                m_citiesAndEvents[city].Add(i_selectedEvent);
             }
-            m_citiesAndEvents[city].Add(i_selectedEvent);
+        }
+
+        private void addRestaurant(Page i_page)
+        {
+            if(i_page.Location.City != null)
+            {
+                string restaurant = i_page.Location.City;
+                if(!m_citiesAndEvents.ContainsKey(restaurant))
+                {
+                    m_citiesAndRestaurants.Add(restaurant, new List<Page>());
+                }
+                m_citiesAndRestaurants[restaurant].Add(i_page);
+            }
         }
 
         private void listBoxCities_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,10 +157,20 @@ namespace BasicFacebookFeatures
             if(listBoxCities.SelectedItems.Count == 1)
             {
                 listBoxEventsByCity.Items.Clear();
-                String city = listBoxCities.SelectedItem.ToString();
-                foreach(Event selectedEvent in m_citiesAndEvents[city])
+                string city = listBoxCities.SelectedItem.ToString();
+                if(m_citiesAndEvents.ContainsKey(city))
                 {
-                    listBoxEventsByCity.Items.Add(selectedEvent);
+                    foreach(Event selectedEvent in m_citiesAndEvents[city])
+                    {
+                        listBoxEventsByCity.Items.Add(selectedEvent);
+                    }
+                }
+                if(m_citiesAndRestaurants.ContainsKey(city))
+                {
+                    foreach(Page selectedPage in m_citiesAndRestaurants[city])
+                    {
+                        listBoxEventsByCity.Items.Add(selectedPage);
+                    }
                 }
             }
 
@@ -452,7 +493,6 @@ namespace BasicFacebookFeatures
             {
                 Group selectedGroup = listBoxGroups.SelectedItem as Group;
                 pictureBoxGroups.LoadAsync(selectedGroup.PictureSmallURL);
-                
             }
         }
 
@@ -517,8 +557,16 @@ namespace BasicFacebookFeatures
         {
             if(listBoxEventsByCity.Items.Count == 1)
             {
-                FormEvent formEvent = new FormEvent(listBoxEventsByCity.SelectedItem as Event);
-                formEvent.ShowDialog();
+                Event selectedEvent = listBoxEventsByCity.SelectedItem as Event;
+                if(selectedEvent != null)
+                {
+                    FormEvent formEvent = new FormEvent(listBoxEventsByCity.SelectedItem as Event);
+                    formEvent.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Cannot retrive event details");
+                }
             }
         }
 
@@ -664,6 +712,28 @@ namespace BasicFacebookFeatures
 
             }
 
+        }
+
+        private void labelEventsSubtitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonRestaurantDetails_Click(object sender, EventArgs e)
+        {
+            if(listBoxRestaurantsByCity.Items.Count == 1)
+            {
+                Page selectedPage = listBoxRestaurantsByCity.SelectedItem as Page;
+                if(selectedPage != null)
+                {
+                    FormPage formPage = new FormPage(listBoxRestaurantsByCity.SelectedItem as Page);
+                    formPage.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Cannot retrive page details");
+                }
+            }
         }
     }
 }
