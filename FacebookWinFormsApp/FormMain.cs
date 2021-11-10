@@ -20,13 +20,13 @@ namespace BasicFacebookFeatures
         Dictionary<string, List<Page>> m_citiesAndRestaurants = new Dictionary<string, List<Page>>();
         Dictionary<string, string[]> m_comboBoxFacebookObjectsOptional = new Dictionary<string, string[]>();
         
-public FormMain()
+        public FormMain()
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
-            m_comboBoxFacebookObjectsOptional.Add("Pages", new string[] { "Most liked Pages", "Oldest Page" });
-            m_comboBoxFacebookObjectsOptional.Add("Friends", new string[] { "Friends with post mutual Friends", "Friends with most Friends" });
-            m_comboBoxFacebookObjectsOptional.Add("Groups", new string[] { "Groups with most members", "Groups with most friends" });
+            m_comboBoxFacebookObjectsOptional.Add("Pages", new string[] {"Most liked Pages"});
+            m_comboBoxFacebookObjectsOptional.Add("Friends", new string[] {"Friends with post mutual Friends", "Friends with most Friends" });
+            m_comboBoxFacebookObjectsOptional.Add("Groups", new string[] {"Groups with most members", "Groups with most friends" });
         }
         
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -496,7 +496,6 @@ public FormMain()
             }
         }
 
-
         private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
             displaySelectedAlbum();
@@ -581,12 +580,11 @@ public FormMain()
 
         private void comboBoxFacebookObjectsOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            labelFacebookItems.Text = comboBoxFacebookObjectsOptions.SelectedItem.ToString();
+            listBoxFacebookItems.Items.Clear();
             switch (comboBoxFacebookObjectsOptions.SelectedItem)
             {
                 case "Most liked Pages":
-                    listBoxFacebookItems.Items.Clear();
-             
                     List<Page> sortedPagesByLikes = m_LoggedInUser.LikedPages.OrderBy(o => o.LikesCount).ToList();
                     foreach (Page page in sortedPagesByLikes)
                     {
@@ -594,13 +592,7 @@ public FormMain()
                     }
                     break;
 
-                case "Oldest Page":
-
-                    listBoxFacebookItems.Items.Clear();
-                    break;
-
                 case "Friends with post mutual Friends":
-                    listBoxFacebookItems.Items.Clear();
                     foreach (Friend friend in sotrtedMutualFreinds())
                     {
                         listBoxFacebookItems.Items.Add(friend);
@@ -608,7 +600,6 @@ public FormMain()
                     break;
 
                 case "Friends with most Friends":
-                    listBoxFacebookItems.Items.Clear();
                     List<User> sortedFriendsByFriends = m_LoggedInUser.Friends.OrderBy(o => o.Friends.Count).ToList();
                     foreach (User friend in sortedFriendsByFriends)
                     {
@@ -617,7 +608,6 @@ public FormMain()
                     break;
 
                 case "Groups with most members":
-                    listBoxFacebookItems.Items.Clear();
                     List<Group> sortedGroupByMembers = m_LoggedInUser.Groups.OrderBy(o => o.Members.Count).ToList();
                     foreach (Group group in sortedGroupByMembers)
                     {
@@ -626,7 +616,6 @@ public FormMain()
                     break;
 
                 case "Groups with most friends":
-                    listBoxFacebookItems.Items.Clear();
                     foreach(GroupExtend group in sotrtedMutualFreindsInGroup())
                     {
                         listBoxFacebookItems.Items.Add(group);
@@ -678,12 +667,13 @@ public FormMain()
                 }
                 gruopList.Add(group);
             }
-            gruopList.OrderBy(o => o.m_MutuaLFrinds.Count).ToList();
+            gruopList.OrderBy(o => o.m_MutualFrinds.Count).ToList();
             return gruopList;
         }
 
         private void listBoxFacebookItems_SelectedIndexChanged(object sender, EventArgs e)
             {
+            labelFacebookItemsPost.Text = String.Format("{0} {1}", labelFacebookItems.Text, "Most liked Posts");
             listBoxPost.Items.Clear();
             if (listBoxFriends.SelectedItems.Count == 1)
             {
@@ -734,6 +724,11 @@ public FormMain()
                     MessageBox.Show("Cannot retrive page details");
                 }
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

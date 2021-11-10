@@ -10,11 +10,11 @@ namespace BasicFacebookFeatures
 {
     class GroupExtend : Group
     {
-        public List<User> m_MutuaLFrinds;
+        public List<User> m_MutualFrinds;
 
         public void AddMutualFriends(User i_MutualFriend)
         {
-            m_MutuaLFrinds.Add(i_MutualFriend);
+            m_MutualFrinds.Add(i_MutualFriend);
         }
     }
 }
