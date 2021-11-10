@@ -196,6 +196,7 @@ namespace BasicFacebookFeatures
             buttonRefresh.Enabled = !buttonRefresh.Enabled;
             buttonFetchAlbums.Enabled = !buttonFetchAlbums.Enabled;
             buttonAboutMe.Enabled = !buttonAboutMe.Enabled;
+            comboBoxFacebookObjects.Enabled = !comboBoxFacebookObjects.Enabled;
         }
 
         private void buttonFetchEvents_Click(object sender, EventArgs e)
@@ -649,15 +650,15 @@ namespace BasicFacebookFeatures
 
         private List<GroupExtend> sotrtedMutualFreindsInGroup()
         {
-            List<GroupExtend> gruopList = new List<GroupExtend>();
+            List<GroupExtend> groupList = new List<GroupExtend>();
 
-            foreach (Group gruop_i in m_LoggedInUser.Groups)
+            foreach (Group group_i in m_LoggedInUser.Groups)
             {
                 
                 GroupExtend group;
-                group = gruop_i as GroupExtend;
+                group = group_i as GroupExtend;
 
-                foreach (User user_j in gruop_i.Members)
+                foreach (User user_j in group_i.Members)
                 {
                     if (group.Members.Contains((user_j)))
                     {
@@ -665,10 +666,10 @@ namespace BasicFacebookFeatures
                     }
 
                 }
-                gruopList.Add(group);
+                groupList.Add(group);
             }
-            gruopList.OrderBy(o => o.m_MutualFrinds.Count).ToList();
-            return gruopList;
+            groupList.OrderBy(o => o.m_MutualFrinds.Count).ToList();
+            return groupList;
         }
 
         private void listBoxFacebookItems_SelectedIndexChanged(object sender, EventArgs e)

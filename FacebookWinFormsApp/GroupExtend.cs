@@ -10,7 +10,7 @@ namespace BasicFacebookFeatures
 {
     class GroupExtend : Group
     {
-        public List<User> m_MutualFrinds;
+        public List<User> m_MutualFrinds = new List<User>();
 
         public void AddMutualFriends(User i_MutualFriend)
         {

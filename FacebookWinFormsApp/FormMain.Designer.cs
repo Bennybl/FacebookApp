@@ -518,6 +518,7 @@
             // 
             // comboBoxFacebookObjects
             // 
+            this.comboBoxFacebookObjects.Enabled = false;
             this.comboBoxFacebookObjects.FormattingEnabled = true;
             this.comboBoxFacebookObjects.Items.AddRange(new object[] {
             "Pages",
