@@ -731,5 +731,10 @@ namespace BasicFacebookFeatures
         {
 
         }
+
+        private void labelFacebookStas_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -60,6 +60,7 @@
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.listBoxNewsFeed = new System.Windows.Forms.ListBox();
             this.tabFeature1 = new System.Windows.Forms.TabPage();
+            this.labelFacebookItemsPost = new System.Windows.Forms.Label();
             this.labelFacebookItems = new System.Windows.Forms.Label();
             this.listBoxPost = new System.Windows.Forms.ListBox();
             this.listBoxFacebookItems = new System.Windows.Forms.ListBox();
@@ -78,7 +79,6 @@
             this.labelEventsByCities = new System.Windows.Forms.Label();
             this.listBoxCities = new System.Windows.Forms.ListBox();
             this.listBoxEventsByCity = new System.Windows.Forms.ListBox();
-            this.labelFacebookItemsPost = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabHomePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriends)).BeginInit();
@@ -134,7 +134,7 @@
             this.tabHomePage.Controls.Add(this.buttonLogin);
             this.tabHomePage.Location = new System.Drawing.Point(4, 29);
             this.tabHomePage.Name = "tabHomePage";
-            this.tabHomePage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabHomePage.Padding = new System.Windows.Forms.Padding(3);
             this.tabHomePage.Size = new System.Drawing.Size(774, 739);
             this.tabHomePage.TabIndex = 0;
             this.tabHomePage.Text = "Home Page";
@@ -393,7 +393,7 @@
             this.tabNewsFeed.Controls.Add(this.listBoxNewsFeed);
             this.tabNewsFeed.Location = new System.Drawing.Point(4, 29);
             this.tabNewsFeed.Name = "tabNewsFeed";
-            this.tabNewsFeed.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabNewsFeed.Padding = new System.Windows.Forms.Padding(3);
             this.tabNewsFeed.Size = new System.Drawing.Size(774, 739);
             this.tabNewsFeed.TabIndex = 1;
             this.tabNewsFeed.Text = "News Feed";
@@ -444,11 +444,19 @@
             this.tabFeature1.Controls.Add(this.comboBoxFacebookObjects);
             this.tabFeature1.Location = new System.Drawing.Point(4, 29);
             this.tabFeature1.Name = "tabFeature1";
-            this.tabFeature1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabFeature1.Padding = new System.Windows.Forms.Padding(3);
             this.tabFeature1.Size = new System.Drawing.Size(774, 739);
             this.tabFeature1.TabIndex = 2;
-            this.tabFeature1.Text = "Feature 1";
+            this.tabFeature1.Text = "Statistics";
             this.tabFeature1.UseVisualStyleBackColor = true;
+            // 
+            // labelFacebookItemsPost
+            // 
+            this.labelFacebookItemsPost.AutoSize = true;
+            this.labelFacebookItemsPost.Location = new System.Drawing.Point(409, 130);
+            this.labelFacebookItemsPost.Name = "labelFacebookItemsPost";
+            this.labelFacebookItemsPost.Size = new System.Drawing.Size(0, 20);
+            this.labelFacebookItemsPost.TabIndex = 8;
             // 
             // labelFacebookItems
             // 
@@ -506,6 +514,7 @@
             this.labelFacebookStas.Size = new System.Drawing.Size(161, 40);
             this.labelFacebookStas.TabIndex = 2;
             this.labelFacebookStas.Text = "Statistics";
+            this.labelFacebookStas.Click += new System.EventHandler(this.labelFacebookStas_Click);
             // 
             // comboBoxFacebookObjectsOptions
             // 
@@ -543,10 +552,10 @@
             this.tabFeature2.Controls.Add(this.listBoxEventsByCity);
             this.tabFeature2.Location = new System.Drawing.Point(4, 29);
             this.tabFeature2.Name = "tabFeature2";
-            this.tabFeature2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabFeature2.Padding = new System.Windows.Forms.Padding(3);
             this.tabFeature2.Size = new System.Drawing.Size(774, 739);
             this.tabFeature2.TabIndex = 3;
-            this.tabFeature2.Text = "Feature 2";
+            this.tabFeature2.Text = "What to do?";
             this.tabFeature2.UseVisualStyleBackColor = true;
             this.tabFeature2.Click += new System.EventHandler(this.tabFeature2_Click);
             // 
@@ -643,14 +652,6 @@
             this.listBoxEventsByCity.Name = "listBoxEventsByCity";
             this.listBoxEventsByCity.Size = new System.Drawing.Size(373, 164);
             this.listBoxEventsByCity.TabIndex = 0;
-            // 
-            // labelFacebookItemsPost
-            // 
-            this.labelFacebookItemsPost.AutoSize = true;
-            this.labelFacebookItemsPost.Location = new System.Drawing.Point(409, 130);
-            this.labelFacebookItemsPost.Name = "labelFacebookItemsPost";
-            this.labelFacebookItemsPost.Size = new System.Drawing.Size(0, 20);
-            this.labelFacebookItemsPost.TabIndex = 8;
             // 
             // FormMain
             // 
