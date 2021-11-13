@@ -51,7 +51,7 @@ namespace BasicFacebookFeatures
             // 
             // pictureBoxPage
             // 
-            this.pictureBoxPage.Location = new System.Drawing.Point(32, 98);
+            this.pictureBoxPage.Location = new System.Drawing.Point(32, 74);
             this.pictureBoxPage.Name = "pictureBoxPage";
             this.pictureBoxPage.Size = new System.Drawing.Size(161, 117);
             this.pictureBoxPage.TabIndex = 9;
@@ -61,7 +61,7 @@ namespace BasicFacebookFeatures
             // 
             this.labelDescription.AutoSize = true;
             this.labelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelDescription.Location = new System.Drawing.Point(38, 277);
+            this.labelDescription.Location = new System.Drawing.Point(38, 234);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(93, 20);
             this.labelDescription.TabIndex = 10;
@@ -71,7 +71,7 @@ namespace BasicFacebookFeatures
             // 
             this.labelCategory.AutoSize = true;
             this.labelCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelCategory.Location = new System.Drawing.Point(38, 242);
+            this.labelCategory.Location = new System.Drawing.Point(38, 203);
             this.labelCategory.Name = "labelCategory";
             this.labelCategory.Size = new System.Drawing.Size(77, 20);
             this.labelCategory.TabIndex = 11;
@@ -81,7 +81,7 @@ namespace BasicFacebookFeatures
             // 
             this.labelLikes.AutoSize = true;
             this.labelLikes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelLikes.Location = new System.Drawing.Point(38, 310);
+            this.labelLikes.Location = new System.Drawing.Point(38, 266);
             this.labelLikes.Name = "labelLikes";
             this.labelLikes.Size = new System.Drawing.Size(50, 20);
             this.labelLikes.TabIndex = 12;
@@ -91,7 +91,7 @@ namespace BasicFacebookFeatures
             // 
             this.labelPosts.AutoSize = true;
             this.labelPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelPosts.Location = new System.Drawing.Point(38, 341);
+            this.labelPosts.Location = new System.Drawing.Point(38, 297);
             this.labelPosts.Name = "labelPosts";
             this.labelPosts.Size = new System.Drawing.Size(53, 20);
             this.labelPosts.TabIndex = 13;
@@ -102,7 +102,7 @@ namespace BasicFacebookFeatures
             this.listBoxPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.listBoxPosts.FormattingEnabled = true;
             this.listBoxPosts.ItemHeight = 20;
-            this.listBoxPosts.Location = new System.Drawing.Point(42, 380);
+            this.listBoxPosts.Location = new System.Drawing.Point(32, 320);
             this.listBoxPosts.Name = "listBoxPosts";
             this.listBoxPosts.Size = new System.Drawing.Size(245, 84);
             this.listBoxPosts.TabIndex = 14;
@@ -111,7 +111,7 @@ namespace BasicFacebookFeatures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 487);
+            this.ClientSize = new System.Drawing.Size(428, 425);
             this.Controls.Add(this.listBoxPosts);
             this.Controls.Add(this.labelPosts);
             this.Controls.Add(this.labelLikes);
