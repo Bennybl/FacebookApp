@@ -14,7 +14,7 @@ namespace BasicFacebookFeatures
 {
     public partial class FormAboutMe : Form
     {
-        User m_LoggedInUser;
+        private User m_LoggedInUser;
         public FormAboutMe(User i_LoggedInUser)
         {
             InitializeComponent();

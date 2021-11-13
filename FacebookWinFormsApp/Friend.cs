@@ -10,7 +10,11 @@ namespace BasicFacebookFeatures
 {
     class Friend : User 
     {
-        public List<User> m_MutuaLFrinds = new List<User>();
+        private List<User> m_MutuaLFrinds = new List<User>();
+        public List<User> MutualFriends
+        {
+            get { return m_MutuaLFrinds; }
+        } 
 
         public void AddMutualFriends(User i_MutualFriend)
         {

@@ -13,7 +13,7 @@ namespace BasicFacebookFeatures
 {
     public partial class FormEvent : Form
     {
-        Event m_Event;
+        private Event m_Event;
         public FormEvent(Event i_Event)
         {
             InitializeComponent();
