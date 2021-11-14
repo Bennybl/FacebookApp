@@ -19,11 +19,13 @@ namespace BasicFacebookFeatures
         private Dictionary<string, List<Event>> m_CitiesAndEvents = new Dictionary<string, List<Event>>();
         private Dictionary<string, List<Page>> m_CitiesAndRestaurants = new Dictionary<string, List<Page>>();
         private Dictionary<string, string[]> m_ComboBoxFacebookObjectsOptional = new Dictionary<string, string[]>();
-        
+        private FormAboutMe m_FormAboutMe = null;
+        private FormAppSettings m_FormAppSettings = null;
+
         public FormMain()
         {
             InitializeComponent();
-            FacebookWrapper.FacebookService.s_CollectionLimit = 100;
+            FacebookService.s_CollectionLimit = 100;
             m_ComboBoxFacebookObjectsOptional.Add("Pages", new string[] {"Most liked Pages"});
             m_ComboBoxFacebookObjectsOptional.Add("Friends", new string[] {"Friends with post mutual Friends", "Friends with most Friends" });
             m_ComboBoxFacebookObjectsOptional.Add("Groups", new string[] {"Groups with most members", "Groups with most friends" });
@@ -32,7 +34,6 @@ namespace BasicFacebookFeatures
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns20aa"); /// the current password for Desig Patter
-
             m_LoginResult = FacebookService.Login(
                     /// (This is Desig Patter's App ID. replace it with your own) - Replaced
                     "169144092019421", 
@@ -53,9 +54,6 @@ namespace BasicFacebookFeatures
                     "user_videos"
                     /// add any relevant permissions
                     );
-
-            
-
             if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
             {
                 m_LoggedInUser = m_LoginResult.LoggedInUser;
@@ -92,6 +90,7 @@ namespace BasicFacebookFeatures
             {
                 addEvent(selectedEvent);
             }
+
             foreach(Page selectedPage in m_LoggedInUser.LikedPages)
             {
                 if(selectedPage.Category != null && selectedPage.Category.Equals("Restaurant"))
@@ -99,6 +98,7 @@ namespace BasicFacebookFeatures
                     addRestaurant(selectedPage);
                 }
             }
+
             if(m_LoggedInUser.Friends != null)
             {
                 foreach(User friend in m_LoggedInUser.Friends)
@@ -116,35 +116,38 @@ namespace BasicFacebookFeatures
                     }
                 }
             }
+
             foreach(string cityName in m_CitiesAndEvents.Keys)
             {
                 listBoxCities.Items.Add(cityName);
             }
         }
 
-        private void addEvent(Event i_selectedEvent)
+        private void addEvent(Event i_SelectedEvent)
         {
-            if(i_selectedEvent.Place.Location.City != null)
+            if(i_SelectedEvent.Place.Location.City != null)
             {
-                string city = i_selectedEvent.Place.Location.City;
+                string city = i_SelectedEvent.Place.Location.City;
                 if(!m_CitiesAndEvents.ContainsKey(city))
                 {
                     m_CitiesAndEvents.Add(city, new List<Event>());
                 }
-                m_CitiesAndEvents[city].Add(i_selectedEvent);
+
+                m_CitiesAndEvents[city].Add(i_SelectedEvent);
             }
         }
 
-        private void addRestaurant(Page i_page)
+        private void addRestaurant(Page i_Page)
         {
-            if(i_page.Location.City != null)
+            if(i_Page.Location.City != null)
             {
-                string restaurant = i_page.Location.City;
+                string restaurant = i_Page.Location.City;
                 if(!m_CitiesAndEvents.ContainsKey(restaurant))
                 {
                     m_CitiesAndRestaurants.Add(restaurant, new List<Page>());
                 }
-                m_CitiesAndRestaurants[restaurant].Add(i_page);
+
+                m_CitiesAndRestaurants[restaurant].Add(i_Page);
             }
         }
 
@@ -161,6 +164,7 @@ namespace BasicFacebookFeatures
                         listBoxEventsByCity.Items.Add(selectedEvent);
                     }
                 }
+
                 if(m_CitiesAndRestaurants.ContainsKey(city))
                 {
                     foreach(Page selectedPage in m_CitiesAndRestaurants[city])
@@ -177,7 +181,7 @@ namespace BasicFacebookFeatures
             pictureBoxProfile.LoadAsync(m_LoggedInUser.PictureNormalURL);
             if (m_LoggedInUser.Posts.Count > 0)
             {
-                //textBoxPostStatus.Text = m_LoggedInUser.Posts[0].Message;
+                textBoxPostStatus.Text = m_LoggedInUser.Posts[0].Message;
             }
         }
 
@@ -236,7 +240,6 @@ namespace BasicFacebookFeatures
         {
             listBoxFriends.Items.Clear();
             listBoxFriends.DisplayMember = "Name";
-
             try
             {
                 foreach (User friend in m_LoggedInUser.Friends)
@@ -244,6 +247,7 @@ namespace BasicFacebookFeatures
                     listBoxFriends.Items.Add(friend.Name);
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -308,6 +312,7 @@ namespace BasicFacebookFeatures
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
+
         }
 
         private void buttonPostStatus_Click(object sender, EventArgs e)
@@ -317,6 +322,7 @@ namespace BasicFacebookFeatures
                 Status postedStatus = m_LoggedInUser.PostStatus(textBoxPostStatus.Text);
                 MessageBox.Show("Status Posted! ID: " + postedStatus.Id);
             }
+
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
@@ -331,7 +337,6 @@ namespace BasicFacebookFeatures
         private void fetchPosts()
         {
             listBoxPosts.Items.Clear();
-
             foreach(Post post in m_LoggedInUser.Posts)
             {
                 if(post.Message != null)
@@ -364,7 +369,6 @@ namespace BasicFacebookFeatures
         {
             listBoxPages.Items.Clear();
             listBoxPages.DisplayMember = "Name";
-
             try
             {
                 foreach(Page page in m_LoggedInUser.LikedPages)
@@ -372,6 +376,7 @@ namespace BasicFacebookFeatures
                     listBoxPages.Items.Add(page);
                 }
             }
+
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -405,6 +410,7 @@ namespace BasicFacebookFeatures
                     listBoxGroups.Items.Add(group);
                 }
             }
+
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -515,24 +521,24 @@ namespace BasicFacebookFeatures
                 }
             }
         }
-
-        FormAboutMe m_FormAboutMe = null;
+        
         private void buttonAboutMe_Click(object sender, EventArgs e)
         {
             if (m_FormAboutMe == null)
             {
                 m_FormAboutMe = new FormAboutMe(m_LoggedInUser);
             }
+
             m_FormAboutMe.ShowDialog();
         }
 
-        FormAppSettings m_FormAppSettings = null;
         private void buttonSettings_Click(object sender, EventArgs e)
         {
             if(m_FormAppSettings == null)
             {
                 m_FormAppSettings = new FormAppSettings();
             }
+
             m_FormAppSettings.ShowDialog();
         }
 
@@ -571,9 +577,7 @@ namespace BasicFacebookFeatures
         private void comboBoxFacebookObjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedItem = comboBoxFacebookObjects.SelectedItem.ToString();
-
             comboBoxFacebookObjectsOptions.Items.Clear();
-            
             comboBoxFacebookObjectsOptions.Items.AddRange(m_ComboBoxFacebookObjectsOptional[selectedItem]);
         }
 
@@ -584,34 +588,38 @@ namespace BasicFacebookFeatures
             switch (comboBoxFacebookObjectsOptions.SelectedItem)
             {
                 case "Most liked Pages":
-                    List<Page> sortedPagesByLikes = m_LoggedInUser.LikedPages.OrderBy(o => o.LikesCount).ToList();
+                    List<Page> sortedPagesByLikes = m_LoggedInUser.LikedPages.OrderBy(page => page.LikesCount).ToList();
                     foreach (Page page in sortedPagesByLikes)
                     {
                         listBoxFacebookItems.Items.Add(page);
                     }
+
                     break;
 
-                case "Friends with post mutual Friends":
-                    foreach (Friend friend in sotrtedMutualFreinds())
+                case "Friends with most mutual Friends":
+                    foreach (Friend friend in friendsSortedByMutualFriends())
                     {
                         listBoxFacebookItems.Items.Add(friend);
                     }
+
                     break;
 
                 case "Friends with most Friends":
-                    List<User> sortedFriendsByFriends = m_LoggedInUser.Friends.OrderBy(o => o.Friends.Count).ToList();
+                    List<User> sortedFriendsByFriends = m_LoggedInUser.Friends.OrderBy(friend => friend.Friends.Count).ToList();
                     foreach (User friend in sortedFriendsByFriends)
                     {
                         listBoxFacebookItems.Items.Add(friend);
                     }
+
                     break;
 
                 case "Groups with most members":
-                    List<Group> sortedGroupByMembers = m_LoggedInUser.Groups.OrderBy(o => o.Members.Count).ToList();
+                    List<Group> sortedGroupByMembers = m_LoggedInUser.Groups.OrderBy(group => group.Members.Count).ToList();
                     foreach (Group group in sortedGroupByMembers)
                     {
                         listBoxFacebookItems.Items.Add(group);
                     }
+
                     break;
 
                 case "Groups with most friends":
@@ -619,60 +627,62 @@ namespace BasicFacebookFeatures
                     {
                         listBoxFacebookItems.Items.Add(group);
                     }
+
                     break;
             }
         }
 
-        private List<Friend> sotrtedMutualFreinds()
+        private List<Friend> friendsSortedByMutualFriends()
         {
             List<Friend> friendList = new List<Friend>();
-
-            foreach(User user_i in m_LoggedInUser.Friends)
+            Friend friend;
+            foreach(User friendUser in m_LoggedInUser.Friends)
             {
-                Friend friend;
-                friend = user_i as Friend;
-                
-                foreach (User user_j in user_i.Friends)
+                friend = friendUser as Friend;
+                foreach (User friendOfFriend in friend.Friends)
                 {
-                    if (friend.Friends.Contains((user_j)))
+                    if (m_LoggedInUser.Friends.Contains(friendOfFriend))
                     {
-                        friend.AddMutualFriends((user_j));
+                        friend.AddMutualFriends(friendOfFriend);
                     }
 
                 }
+
                 friendList.Add(friend);
             }
-            friendList.OrderBy(o => o.MutualFriends.Count).ToList();
+
+            friendList.OrderBy(userFriend => userFriend.MutualFriends.Count).ToList();
+
             return friendList;
         }
 
         private List<GroupExtend> sotrtedMutualFreindsInGroup()
         {
             List<GroupExtend> groupList = new List<GroupExtend>();
-
-            foreach (Group group_i in m_LoggedInUser.Groups)
+            GroupExtend group;
+            foreach (Group userGroup in m_LoggedInUser.Groups)
             {
-                
-                GroupExtend group;
-                group = group_i as GroupExtend;
-
-                foreach (User user_j in group_i.Members)
+                group = userGroup as GroupExtend;
+                foreach (User groupMember in userGroup.Members)
                 {
-                    if (group.Members.Contains((user_j)))
+                    if (m_LoggedInUser.Friends.Contains(groupMember))
                     {
-                        group.AddMutualFriends((user_j));
+                        group.AddMutualFriends((groupMember));
                     }
 
                 }
+
                 groupList.Add(group);
             }
-            groupList.OrderBy(o => o.MutualFriends.Count).ToList();
+
+            groupList.OrderBy(userGroup => userGroup.MutualFriends.Count).ToList();
+
             return groupList;
         }
 
         private void listBoxFacebookItems_SelectedIndexChanged(object sender, EventArgs e)
             {
-            labelFacebookItemsPost.Text = String.Format("{0} {1}", labelFacebookItems.Text, "Most liked Posts");
+            labelFacebookItemsPost.Text = $"{labelFacebookItems.Text} Most liked Posts";
             listBoxPost.Items.Clear();
             if (listBoxFriends.SelectedItems.Count == 1)
             {
@@ -693,7 +703,8 @@ namespace BasicFacebookFeatures
                         selectedItem = listBoxFacebookItems.SelectedItem as Group;
                         break;
                 }
-                List<Post> sortedPostByLikes = m_LoggedInUser.Posts.OrderBy(o => o.LikedBy.Count).ToList();
+
+                List<Post> sortedPostByLikes = m_LoggedInUser.Posts.OrderBy(post => post.LikedBy.Count).ToList();
                 foreach (Post post in sortedPostByLikes)
                 {
                     listBoxPost.Items.Add(post);
