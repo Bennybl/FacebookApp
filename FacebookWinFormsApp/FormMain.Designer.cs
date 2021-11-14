@@ -62,7 +62,7 @@
             this.tabFeature1 = new System.Windows.Forms.TabPage();
             this.labelFacebookItemsPost = new System.Windows.Forms.Label();
             this.labelFacebookItems = new System.Windows.Forms.Label();
-            this.listBoxPost = new System.Windows.Forms.ListBox();
+            this.listBoxPostStatistics = new System.Windows.Forms.ListBox();
             this.listBoxFacebookItems = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,7 +72,6 @@
             this.tabFeature2 = new System.Windows.Forms.TabPage();
             this.buttonRestaurantDetails = new System.Windows.Forms.Button();
             this.listBoxRestaurantsByCity = new System.Windows.Forms.ListBox();
-            this.listBoxRestaurants = new System.Windows.Forms.ListBox();
             this.labelSubtitle2 = new System.Windows.Forms.Label();
             this.buttonEventDetails = new System.Windows.Forms.Button();
             this.labelEventsSubtitle = new System.Windows.Forms.Label();
@@ -181,6 +180,7 @@
             // 
             // buttonSettings
             // 
+            this.buttonSettings.Enabled = false;
             this.buttonSettings.Location = new System.Drawing.Point(12, 34);
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.Size = new System.Drawing.Size(155, 23);
@@ -349,6 +349,7 @@
             this.textBoxPostStatus.Name = "textBoxPostStatus";
             this.textBoxPostStatus.Size = new System.Drawing.Size(252, 20);
             this.textBoxPostStatus.TabIndex = 80;
+            this.textBoxPostStatus.TextChanged += new System.EventHandler(this.textBoxPostStatus_TextChanged);
             // 
             // buttonFetchPosts
             // 
@@ -383,6 +384,7 @@
             // 
             // buttonLogout
             // 
+            this.buttonLogout.Enabled = false;
             this.buttonLogout.Location = new System.Drawing.Point(94, 8);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(72, 23);
@@ -453,7 +455,7 @@
             // 
             this.tabFeature1.Controls.Add(this.labelFacebookItemsPost);
             this.tabFeature1.Controls.Add(this.labelFacebookItems);
-            this.tabFeature1.Controls.Add(this.listBoxPost);
+            this.tabFeature1.Controls.Add(this.listBoxPostStatistics);
             this.tabFeature1.Controls.Add(this.listBoxFacebookItems);
             this.tabFeature1.Controls.Add(this.label3);
             this.tabFeature1.Controls.Add(this.label2);
@@ -468,6 +470,7 @@
             this.tabFeature1.TabIndex = 2;
             this.tabFeature1.Text = "Statistics";
             this.tabFeature1.UseVisualStyleBackColor = true;
+            this.tabFeature1.Click += new System.EventHandler(this.tabFeature1_Click);
             // 
             // labelFacebookItemsPost
             // 
@@ -488,14 +491,14 @@
             this.labelFacebookItems.TabIndex = 7;
             this.labelFacebookItems.Text = "Facebook items";
             // 
-            // listBoxPost
+            // listBoxPostStatistics
             // 
-            this.listBoxPost.FormattingEnabled = true;
-            this.listBoxPost.Location = new System.Drawing.Point(273, 106);
-            this.listBoxPost.Margin = new System.Windows.Forms.Padding(2);
-            this.listBoxPost.Name = "listBoxPost";
-            this.listBoxPost.Size = new System.Drawing.Size(230, 290);
-            this.listBoxPost.TabIndex = 6;
+            this.listBoxPostStatistics.FormattingEnabled = true;
+            this.listBoxPostStatistics.Location = new System.Drawing.Point(273, 106);
+            this.listBoxPostStatistics.Margin = new System.Windows.Forms.Padding(2);
+            this.listBoxPostStatistics.Name = "listBoxPostStatistics";
+            this.listBoxPostStatistics.Size = new System.Drawing.Size(230, 290);
+            this.listBoxPostStatistics.TabIndex = 6;
             // 
             // listBoxFacebookItems
             // 
@@ -569,7 +572,6 @@
             // 
             this.tabFeature2.Controls.Add(this.buttonRestaurantDetails);
             this.tabFeature2.Controls.Add(this.listBoxRestaurantsByCity);
-            this.tabFeature2.Controls.Add(this.listBoxRestaurants);
             this.tabFeature2.Controls.Add(this.labelSubtitle2);
             this.tabFeature2.Controls.Add(this.buttonEventDetails);
             this.tabFeature2.Controls.Add(this.labelEventsSubtitle);
@@ -605,15 +607,6 @@
             this.listBoxRestaurantsByCity.Name = "listBoxRestaurantsByCity";
             this.listBoxRestaurantsByCity.Size = new System.Drawing.Size(250, 108);
             this.listBoxRestaurantsByCity.TabIndex = 7;
-            // 
-            // listBoxRestaurants
-            // 
-            this.listBoxRestaurants.FormattingEnabled = true;
-            this.listBoxRestaurants.Location = new System.Drawing.Point(27, 280);
-            this.listBoxRestaurants.Margin = new System.Windows.Forms.Padding(2);
-            this.listBoxRestaurants.Name = "listBoxRestaurants";
-            this.listBoxRestaurants.Size = new System.Drawing.Size(153, 108);
-            this.listBoxRestaurants.TabIndex = 6;
             // 
             // labelSubtitle2
             // 
@@ -664,7 +657,7 @@
             this.listBoxCities.Location = new System.Drawing.Point(27, 123);
             this.listBoxCities.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxCities.Name = "listBoxCities";
-            this.listBoxCities.Size = new System.Drawing.Size(153, 108);
+            this.listBoxCities.Size = new System.Drawing.Size(153, 264);
             this.listBoxCities.TabIndex = 1;
             this.listBoxCities.SelectedIndexChanged += new System.EventHandler(this.listBoxCities_SelectedIndexChanged);
             // 
@@ -753,11 +746,10 @@
         private System.Windows.Forms.ComboBox comboBoxFacebookObjectsOptions;
         private System.Windows.Forms.ComboBox comboBoxFacebookObjects;
         private System.Windows.Forms.Label labelFacebookItems;
-        private System.Windows.Forms.ListBox listBoxPost;
+        private System.Windows.Forms.ListBox listBoxPostStatistics;
         private System.Windows.Forms.ListBox listBoxFacebookItems;
         private System.Windows.Forms.Button buttonRestaurantDetails;
         private System.Windows.Forms.ListBox listBoxRestaurantsByCity;
-        private System.Windows.Forms.ListBox listBoxRestaurants;
         private System.Windows.Forms.Label labelSubtitle2;
         private System.Windows.Forms.Label labelFacebookItemsPost;
     }

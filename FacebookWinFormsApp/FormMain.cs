@@ -63,6 +63,7 @@ namespace BasicFacebookFeatures
             }
         }
 
+
         private void buttonLogout_Click(object sender, EventArgs e)
         {
 			FacebookService.LogoutWithUI();
@@ -81,6 +82,13 @@ namespace BasicFacebookFeatures
             listBoxPages.Items.Clear();
             listBoxNewsFeed.Items.Clear();
             listBoxPosts.Items.Clear();
+            textBoxPostStatus.Text = "";
+            listBoxCities.Items.Clear();
+            listBoxEventsByCity.Items.Clear();
+            listBoxRestaurantsByCity.Items.Clear();
+            listBoxFacebookItems.Items.Clear();
+            listBoxPostStatistics.Items.Clear();
+
         }
 
         private void fetchCitiesEventsRestaurants()
@@ -198,6 +206,8 @@ namespace BasicFacebookFeatures
             comboBoxFacebookObjects.Enabled = !comboBoxFacebookObjects.Enabled;
             buttonRestaurantDetails.Enabled = !buttonRestaurantDetails.Enabled;
             buttonEventDetails.Enabled = !buttonEventDetails.Enabled;
+            buttonLogout.Enabled = !buttonLogout.Enabled;
+            buttonSettings.Enabled = !buttonSettings.Enabled;
         }
 
         private void buttonFetchEvents_Click(object sender, EventArgs e)
@@ -682,7 +692,7 @@ namespace BasicFacebookFeatures
         private void listBoxFacebookItems_SelectedIndexChanged(object sender, EventArgs e)
             {
             labelFacebookItemsPost.Text = $"{labelFacebookItems.Text} Most liked Posts";
-            listBoxPost.Items.Clear();
+            listBoxPostStatistics.Items.Clear();
             if (listBoxFriends.SelectedItems.Count == 1)
             {
                 object selectedItem;
@@ -706,7 +716,7 @@ namespace BasicFacebookFeatures
                 List<Post> sortedPostByLikes = m_LoggedInUser.Posts.OrderBy(post => post.LikedBy.Count).ToList();
                 foreach (Post post in sortedPostByLikes)
                 {
-                    listBoxPost.Items.Add(post);
+                    listBoxPostStatistics.Items.Add(post);
                 }
 
             }
@@ -753,6 +763,21 @@ namespace BasicFacebookFeatures
         }
 
         private void listBoxEventsByCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxPostStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxRestaurants_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabFeature1_Click(object sender, EventArgs e)
         {
 
         }
