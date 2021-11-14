@@ -1,5 +1,5 @@
 ﻿
-namespace TestBed
+namespace BasicFacebookFeatures
 {
     partial class FormAppSettings
     {

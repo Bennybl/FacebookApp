@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using FacebookWrapper.ObjectModel;
-using FacebookWrapper;
 
 namespace BasicFacebookFeatures
 {
     class Friend : User 
     {
         private List<User> m_MutuaLFrinds = new List<User>();
+
+        public Friend() { }
         public List<User> MutualFriends
         {
             get { return m_MutuaLFrinds; }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 
@@ -14,21 +7,22 @@ namespace BasicFacebookFeatures
     public partial class FormEvent : Form
     {
         private Event m_Event;
+
         public FormEvent(Event i_Event)
         {
             InitializeComponent();
             m_Event = i_Event;
-            if(i_Event.PictureNormalURL != null)
+            if(m_Event.PictureNormalURL != null)
             {
-                pictureBoxEvent.LoadAsync(i_Event.PictureNormalURL);
+                pictureBoxEvent.LoadAsync(m_Event.PictureNormalURL);
             }
-            DateTime start = (DateTime) i_Event.StartTime;
-            DateTime end = (DateTime)i_Event.EndTime;
-            labelEventName.Text = i_Event.Name.ToString();
+            DateTime start = (DateTime)m_Event.StartTime;
+            DateTime end = (DateTime)m_Event.EndTime;
+            labelEventName.Text = m_Event.Name.ToString();
             labelTime.Text = $"{start.DayOfWeek} the {start.Day}/{start.Month}/{start.Year} From {start.Hour}:{start.Minute} to {end.Hour}:{end.Minute}";
-            labelLocation.Text = $"Location:{i_Event.Venue.Name}, {i_Event.Place.Location.City}, {i_Event.Place.Location.Country}.";
-            labelOwner.Text = i_Event.Owner == null ? "Owner Unavailable" : i_Event.Owner.Name;
-            labelAttending.Text = $"Attending: {i_Event.AttendingCount}";
+            labelLocation.Text = $"Location:{m_Event.Venue.Name}, {m_Event.Place.Location.City}, {m_Event.Place.Location.Country}.";
+            labelOwner.Text = m_Event.Owner == null ? "Owner Unavailable" : m_Event.Owner.Name;
+            labelAttending.Text = $"Attending: {m_Event.AttendingCount}";
             retriveAttending();
         }
 
@@ -40,9 +34,9 @@ namespace BasicFacebookFeatures
                 {
                     listBoxAttending.Items.Add(user.Name);
                 }
-                ///pictureBoxEvent.LoadAsync(m_Event.PictureNormalURL);
             }
-            catch(Exception ex)
+
+            catch(Exception)
             {
                 MessageBox.Show("Cannot retrive attending list");
             }

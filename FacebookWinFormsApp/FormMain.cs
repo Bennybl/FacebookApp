@@ -8,7 +8,6 @@ using System.Linq;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
-using TestBed;
 
 namespace BasicFacebookFeatures
 {
